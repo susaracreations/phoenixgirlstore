@@ -1,0 +1,38 @@
+<!-- product.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="/" class="logo">Phoenix Girl Mods</a>
+            <div id="user-auth-section" class="user-auth"></div>
+        </div>
+    </header>
+
+    <main id="product-detail-container">
+        <!-- Product details will be loaded here by JavaScript -->
+        <p>Loading product details...</p>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Phoenix Girl Mods Store</p>
+    </footer>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+
+    <!-- Your Scripts -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/user-auth.js"></script>
+    <script src="js/product.js"></script>
+</body>
+</html>
