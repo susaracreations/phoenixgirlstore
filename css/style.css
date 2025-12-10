@@ -1,0 +1,321 @@
+/* css/style.css */
+:root {
+    --primary-color: #e53935; /* Red */
+    --secondary-color: #121212; /* Dark Gray/Black */
+    --text-color: #f5f5f5;
+    --card-bg: #1e1e1e;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    background-color: var(--secondary-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+header {
+    background-color: var(--secondary-color);
+    padding: 0 2rem;
+    border-bottom: 2px solid var(--primary-color);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 70px;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--text-color);
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+/* Hero Section */
+.hero {
+    padding: 4rem 1rem;
+    text-align: center;
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(18, 18, 18, 0.6); /* Dark overlay */
+    z-index: 1;
+}
+
+.hero h2 {
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    animation: fadeInDown 1s ease-in-out;
+    position: relative;
+    z-index: 2;
+}
+
+.hero p {
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+    animation: fadeInUp 1s ease-in-out;
+    position: relative;
+    z-index: 2;
+}
+
+main {
+    padding: 2rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Products Grid */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.product-card {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--text-color);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+.product-card-image-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.product-card-image, .product-card-image-placeholder {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.product-card-image-placeholder {
+    background-color: #333;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 25px rgba(229, 57, 53, 0.4);
+}
+
+.product-card:hover .product-card-image {
+    transform: scale(1.05);
+}
+
+.product-card:nth-child(2) { animation-delay: 0.1s; }
+.product-card:nth-child(3) { animation-delay: 0.2s; }
+.product-card:nth-child(4) { animation-delay: 0.3s; }
+.product-card:nth-child(5) { animation-delay: 0.4s; }
+
+.product-card-content {
+    padding: 1rem;
+    flex-grow: 1;
+}
+
+.product-card h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+}
+
+.product-card-price {
+    display: block;
+    margin-top: 0.5rem;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: var(--text-color);
+}
+
+.product-card-tag {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    z-index: 2;
+}
+
+.free-tag {
+    background-color: var(--primary-color); /* Red */
+}
+
+.paid-tag {
+    background-color: #2196F3; /* Blue */
+}
+
+.product-card-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.price-free {
+    color: #4caf50; /* Green */
+}
+
+/* User Auth Header Section */
+.user-auth {
+    font-size: 0.9rem;
+}
+
+.product-card:hover .product-card-overlay {
+    opacity: 1;
+}
+
+.user-auth a {
+    color: white;
+    text-decoration: none;
+    margin-left: 10px;
+}
+
+.user-auth a:hover {
+    text-decoration: underline;
+}
+
+/* Auth Page (Login/Sign Up) */
+.auth-container {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: var(--card-bg);
+    border-radius: 8px;
+}
+
+.auth-container h2 {
+    text-align: center;
+    color: var(--primary-color);
+}
+
+.auth-container input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 1rem;
+    border: 1px solid #444;
+    border-radius: 4px;
+    background-color: #333;
+    color: var(--text-color);
+    box-sizing: border-box;
+}
+
+.auth-toggle {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+/* Product Detail Page */
+#product-detail-container {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+.product-detail-image {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.product-price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    margin: 1rem 0;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn.whatsapp-btn {
+    background-color: #25D366; /* WhatsApp Green */
+}
+
+.btn.whatsapp-btn:hover {
+    background-color: #128C7E; /* Darker WhatsApp Green */
+}
+
+.btn:hover {
+    background-color: #c62828; /* Darker Red */
+}
+
+footer {
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    background-color: #1a1a1a;
+    font-size: 0.9rem;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}

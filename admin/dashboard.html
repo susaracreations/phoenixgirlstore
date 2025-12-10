@@ -1,0 +1,69 @@
+<!-- admin/dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div class="admin-container">
+        <header class="admin-header">
+            <h1>Admin Dashboard</h1>
+            <button id="logout-button">Logout</button>
+        </header>
+
+        <main>
+            <!-- Site Settings Form -->
+            <section class="form-section">
+                <h2>Site Settings</h2>
+                <form id="settings-form">
+                    <label for="hero-image-url">Homepage Hero Image URL</label>
+                    <input type="url" id="hero-image-url" placeholder="https://example.com/hero-background.jpg">
+                    <label for="whatsapp-number">WhatsApp Number (with country code, e.g., 94771234567)</label>
+                    <input type="tel" id="whatsapp-number" placeholder="94771234567">
+                    <div class="form-buttons">
+                        <button type="submit">Save Settings</button>
+                    </div>
+                </form>
+            </section>
+            <!-- Add/Edit Product Form -->
+            <section class="form-section">
+                <h2 id="form-title">Add New Mod</h2>
+                <form id="product-form">
+                    <input type="hidden" id="product-id">
+                    <input type="text" id="product-name" placeholder="Product Name" required>
+                    <textarea id="product-description" placeholder="Product Description" required></textarea>
+                    <input type="number" id="product-price" placeholder="Price (0 for free)" step="0.01" min="0" required>
+                    <label for="product-image-url">Preview Image URL</label>
+                    <input type="url" id="product-image-url" placeholder="https://example.com/your-image.jpg" required>
+                    <img id="image-preview" class="hidden" alt="Image Preview">
+                    <label for="product-download-link">Product Download Link (URL)</label>
+                    <input type="url" id="product-download-link" placeholder="https://example.com/your-mod-file.zip" required>
+                    <div class="form-buttons">
+                        <button type="submit">Save Product</button>
+                        <button type="button" id="cancel-edit" class="hidden">Cancel Edit</button>
+                    </div>
+                </form>
+                <p id="upload-progress" class="hidden"></p>
+            </section>
+
+            <!-- Product List -->
+            <section class="list-section">
+                <h2>Manage Mods</h2>
+                <div id="product-list">
+                    <!-- Product list will be loaded here -->
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <script src="../js/firebase-config.js"></script>
+    <script src="auth.js"></script>
+    <script src="crud.js"></script>
+</body>
+</html>
