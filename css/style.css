@@ -96,7 +96,6 @@ header {
     padding: 4rem 1rem; /* Slightly less padding than main hero */
     text-align: center;
     position: relative;
-    background-image: url('https://via.placeholder.com/1920x400/333333/FFFFFF?text=Secondary+Hero+Image'); /* Placeholder image */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
