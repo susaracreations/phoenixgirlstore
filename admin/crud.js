@@ -21,7 +21,13 @@ function initializeCrud() {
     // --- SITE SETTINGS ---
     const settingsForm = document.getElementById('settings-form');
     const heroImageUrlInput = document.getElementById('hero-image-url');
+    const mainHeroTitleInput = document.getElementById('main-hero-title');
+    const mainHeroDescriptionInput = document.getElementById('main-hero-description');
+    const faviconUrlInput = document.getElementById('favicon-url'); // This line already exists and is correct
     const whatsappNumberInput = document.getElementById('whatsapp-number');
+    const secondaryHeroImageUrlInput = document.getElementById('secondary-hero-image-url');
+    const secondaryHeroTitleInput = document.getElementById('secondary-hero-title');
+    const secondaryHeroDescriptionInput = document.getElementById('secondary-hero-description');
     const settingsRef = db.collection('site_settings').doc('homepage');
 
     // Load existing settings
@@ -29,14 +35,29 @@ function initializeCrud() {
         if (doc.exists) {
             const settings = doc.data();
             heroImageUrlInput.value = settings.heroImageUrl || '';
+            mainHeroTitleInput.value = settings.mainHeroTitle || '';
+            mainHeroDescriptionInput.value = settings.mainHeroDescription || ''; 
+            faviconUrlInput.value = settings.faviconUrl || '';
             whatsappNumberInput.value = settings.whatsappNumber || '';
+            secondaryHeroImageUrlInput.value = settings.secondaryHeroImageUrl || '';
+            secondaryHeroTitleInput.value = settings.secondaryHeroTitle || '';
+            secondaryHeroDescriptionInput.value = settings.secondaryHeroDescription || '';
         }
     }).catch(error => console.error("Error fetching site settings:", error));
 
     // Save settings
     settingsForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        const settingsData = { heroImageUrl: heroImageUrlInput.value, whatsappNumber: whatsappNumberInput.value };
+        const settingsData = { 
+            heroImageUrl: heroImageUrlInput.value,
+            mainHeroTitle: mainHeroTitleInput.value,
+            mainHeroDescription: mainHeroDescriptionInput.value, 
+            faviconUrl: faviconUrlInput.value,
+            whatsappNumber: whatsappNumberInput.value,
+            secondaryHeroImageUrl: secondaryHeroImageUrlInput.value,
+            secondaryHeroTitle: secondaryHeroTitleInput.value,
+            secondaryHeroDescription: secondaryHeroDescriptionInput.value
+        };
         settingsRef.set(settingsData, { merge: true })
             .then(() => alert('Site settings saved successfully!'))
             .catch(error => alert('Error saving settings: ' + error.message));

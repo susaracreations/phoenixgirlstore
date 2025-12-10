@@ -20,8 +20,17 @@
                 <form id="settings-form">
                     <label for="hero-image-url">Homepage Hero Image URL</label>
                     <input type="url" id="hero-image-url" placeholder="https://example.com/hero-background.jpg">
+                    <input type="text" id="main-hero-title" placeholder="Main Hero Title">
+                    <textarea id="main-hero-description" placeholder="Main Hero Description"></textarea>
+                    <label for="favicon-url">Favicon URL</label>
+                    <input type="url" id="favicon-url" placeholder="https://example.com/favicon.ico">
                     <label for="whatsapp-number">WhatsApp Number (with country code, e.g., 94771234567)</label>
                     <input type="tel" id="whatsapp-number" placeholder="94771234567">
+                    <hr style="margin: 2rem 0;">
+                    <label for="secondary-hero-image-url">Secondary Hero Image URL</label>
+                    <input type="url" id="secondary-hero-image-url" placeholder="https://example.com/secondary-hero.jpg">
+                    <input type="text" id="secondary-hero-title" placeholder="Secondary Hero Title">
+                    <textarea id="secondary-hero-description" placeholder="Secondary Hero Description"></textarea>
                     <div class="form-buttons">
                         <button type="submit">Save Settings</button>
                     </div>
@@ -63,6 +72,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
     <script src="../js/firebase-config.js"></script>
+    <script src="../js/favicon-loader.js"></script>
     <script src="auth.js"></script>
     <script src="crud.js"></script>
 </body>

@@ -43,13 +43,13 @@ header {
 
 /* Hero Section */
 .hero {
-    padding: 4rem 1rem;
+    padding: 6rem 1rem;
     text-align: center;
     position: relative;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    min-height: 300px;
+    min-height: 400px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -60,25 +60,88 @@ header {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background-color: rgba(18, 18, 18, 0.6); /* Dark overlay */
+    background: linear-gradient(to top, rgba(18, 18, 18, 0.9), rgba(18, 18, 18, 0.4)); /* Gradient overlay */
     z-index: 1;
 }
 
 .hero h2 {
-    font-size: 2.2rem;
+    font-size: 3.5rem;
     color: var(--primary-color);
     animation: fadeInDown 1s ease-in-out;
     position: relative;
     z-index: 2;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
 
 .hero p {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     max-width: 600px;
     margin: 0 auto;
     animation: fadeInUp 1s ease-in-out;
     position: relative;
     z-index: 2;
+}
+
+.hero-btn {
+    margin-top: 2rem;
+    position: relative;
+    z-index: 2;
+    padding: 14px 32px;
+    font-size: 1.1rem;
+    animation: fadeInUp 1s ease-in-out 0.2s;
+    animation-fill-mode: backwards; /* Start animation even if delayed */
+}
+
+.secondary-hero {
+    padding: 4rem 1rem; /* Slightly less padding than main hero */
+    text-align: center;
+    position: relative;
+    background-image: url('https://via.placeholder.com/1920x400/333333/FFFFFF?text=Secondary+Hero+Image'); /* Placeholder image */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 250px; /* Slightly shorter than main hero */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4rem; /* Space from the products section */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3); /* Subtle shadow */
+}
+
+.secondary-hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(to top, rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.3)); /* Slightly different gradient */
+    z-index: 1;
+}
+
+.secondary-hero h2 {
+    font-size: 2.5rem; /* Slightly smaller heading */
+    color: var(--primary-color);
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+
+.secondary-hero p {
+    font-size: 1.1rem;
+    max-width: 500px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.secondary-hero-btn {
+    margin-top: 1.5rem;
+    position: relative;
+    z-index: 2;
+}
+
+.view-all-container {
+    text-align: center;
+    margin-top: 2.5rem;
 }
 
 main {
@@ -238,11 +301,51 @@ main {
     background-color: #333;
     color: var(--text-color);
     box-sizing: border-box;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.auth-container input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.2);
 }
 
 .auth-toggle {
     text-align: center;
     margin-top: 1.5rem;
+}
+
+.or-separator {
+    text-align: center;
+    margin: 1.5rem 0;
+    color: #888;
+    display: flex;
+    align-items: center;
+}
+
+.or-separator::before, .or-separator::after {
+    content: '';
+    flex-grow: 1;
+    height: 1px;
+    background: #444;
+    margin: 0 1rem;
+}
+
+.google-btn {
+    background-color: #fff;
+    color: #444;
+    border: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.google-btn:hover {
+    background-color: #f5f5f5;
+}
+.google-icon {
+    width: 18px;
+    height: 18px;
 }
 
 /* Product Detail Page */
@@ -310,9 +413,39 @@ footer {
     to { opacity: 1; transform: translateY(0); }
 }
 
+/* Form transition animations */
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideOut {
+    from { opacity: 1; transform: translateX(0); }
+    to { opacity: 0; transform: translateX(-50px); }
+}
+
+#login-form, #signup-form {
+    animation-duration: 0.4s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+}
+
+.form-enter {
+    animation-name: slideIn;
+}
+
+.form-exit {
+    animation-name: slideOut;
+}
+
 @keyframes fadeInDown {
     from { opacity: 0; transform: translateY(-20px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heroZoom {
+    from { background-size: 100% auto; }
+    to { background-size: 110% auto; }
 }
 
 @keyframes fadeInUp {

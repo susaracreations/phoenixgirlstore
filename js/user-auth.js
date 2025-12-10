@@ -43,24 +43,41 @@ function initializeAuthPage() {
     const authError = document.getElementById('auth-error');
     const toggleLink = document.getElementById('toggle-link');
     const toggleText = document.getElementById('toggle-text');
+    const googleSignInBtn = document.getElementById('google-signin-btn');
     const authTitle = document.getElementById('auth-title');
 
     // Toggle between Login and Sign Up views
     toggleLink.addEventListener('click', (e) => {
         e.preventDefault();
-        loginForm.classList.toggle('hidden');
-        signupForm.classList.toggle('hidden');
+        const isSignUpVisible = !signupForm.classList.contains('hidden');
 
-        if (signupForm.classList.contains('hidden')) {
+        if (isSignUpVisible) {
+            // Switch to Login
             authTitle.textContent = 'Login';
             toggleText.textContent = "Don't have an account?";
             toggleLink.textContent = 'Sign Up';
+            loginForm.classList.remove('hidden');
+            loginForm.classList.add('form-enter');
+            signupForm.classList.add('form-exit');
         } else {
+            // Switch to Sign Up
             authTitle.textContent = 'Sign Up';
             toggleText.textContent = 'Already have an account?';
             toggleLink.textContent = 'Login';
+            signupForm.classList.remove('hidden');
+            signupForm.classList.add('form-enter');
+            loginForm.classList.add('form-exit');
         }
     });
+
+    // Use animationend event to toggle visibility after animation completes
+    loginForm.addEventListener('animationend', () => {
+        if (loginForm.classList.contains('form-exit')) loginForm.classList.add('hidden');
+    });
+    signupForm.addEventListener('animationend', () => {
+        if (signupForm.classList.contains('form-exit')) signupForm.classList.add('hidden');
+    });
+
 
     // Handle Login
     loginForm.addEventListener('submit', (e) => {
@@ -91,6 +108,21 @@ function initializeAuthPage() {
                 authError.textContent = error.message;
             });
     });
+
+    // Handle Google Sign-In
+    if (googleSignInBtn) {
+        googleSignInBtn.addEventListener('click', () => {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            auth.signInWithPopup(provider)
+                .then((result) => {
+                    // This gives you a Google Access Token. You can use it to access the Google API.
+                    window.location.href = '/'; // Redirect to homepage on successful login
+                }).catch((error) => {
+                    // Handle Errors here.
+                    authError.textContent = error.message;
+                });
+        });
+    }
 }
 
 // Check which page we are on and run the appropriate function
