@@ -11,8 +11,12 @@ function updateUserNav() {
     auth.onAuthStateChanged(user => {
         if (user) {
             // User is signed in
+            const username = user.displayName || user.email.split('@')[0];
             userAuthSection.innerHTML = `
-                <span>Welcome, ${user.email.split('@')[0]}</span>
+                <div class="user-profile">
+                    <svg class="user-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path></svg>
+                    <span>${username}</span>
+                </div>
                 <a href="#" id="logout-link">Logout</a>
             `;
             const logoutLink = document.getElementById('logout-link');
@@ -29,7 +33,7 @@ function updateUserNav() {
             }
         } else {
             // User is signed out
-            userAuthSection.innerHTML = '<a href="/login.html">Login / Sign Up</a>';
+            userAuthSection.innerHTML = '<a href="/login.html" class="btn login-btn">Login</a>';
         }
     });
 }

@@ -18,6 +18,27 @@ function initializeCrud() {
 
     const productsRef = db.collection('products');
 
+    // --- NAVIGATION ---
+    const navLinks = document.querySelectorAll('.nav-link');
+    const contentSections = document.querySelectorAll('.content-section');
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const targetId = link.getAttribute('href').substring(1);
+
+            // Update active link
+            navLinks.forEach(navLink => navLink.classList.remove('active'));
+            link.classList.add('active');
+
+            // Show/hide content sections
+            contentSections.forEach(section => {
+                section.id === targetId ? section.classList.remove('hidden') : section.classList.add('hidden');
+            });
+            window.scrollTo(0, 0);
+        });
+    });
+
     // --- SITE SETTINGS ---
     const settingsForm = document.getElementById('settings-form');
     const heroImageUrlInput = document.getElementById('hero-image-url');

@@ -1,67 +1,99 @@
-<!-- admin/dashboard.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Admin Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Phoenix Girl</title>
     <link rel="stylesheet" href="admin.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 </head>
 <body>
-    <div class="admin-container">
-        <header class="admin-header">
-            <h1>Admin Dashboard</h1>
-            <button id="logout-button">Logout</button>
-        </header>
+    <div class="admin-layout">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2>Phoenix Girl</h2>
+                <span>Admin Panel</span>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#products-section" class="nav-link active"><span class="material-icons-outlined">inventory_2</span> Products</a>
+                <a href="#settings-section" class="nav-link"><span class="material-icons-outlined">settings</span> Site Settings</a>
+            </nav>
+            <div class="sidebar-footer">
+                <button id="logout-button" class="logout-button"><span class="material-icons-outlined">logout</span> Logout</button>
+            </div>
+        </aside>
 
-        <main>
-            <!-- Site Settings Form -->
-            <section class="form-section">
-                <h2>Site Settings</h2>
-                <form id="settings-form">
-                    <label for="hero-image-url">Homepage Hero Image URL</label>
-                    <input type="url" id="hero-image-url" placeholder="https://example.com/hero-background.jpg">
-                    <input type="text" id="main-hero-title" placeholder="Main Hero Title">
-                    <textarea id="main-hero-description" placeholder="Main Hero Description"></textarea>
-                    <label for="favicon-url">Favicon URL</label>
-                    <input type="url" id="favicon-url" placeholder="https://example.com/favicon.ico">
-                    <label for="whatsapp-number">WhatsApp Number (with country code, e.g., 94771234567)</label>
-                    <input type="tel" id="whatsapp-number" placeholder="94771234567">
-                    <hr style="margin: 2rem 0;">
-                    <label for="secondary-hero-image-url">Secondary Hero Image URL</label>
-                    <input type="url" id="secondary-hero-image-url" placeholder="https://example.com/secondary-hero.jpg">
-                    <input type="text" id="secondary-hero-title" placeholder="Secondary Hero Title">
-                    <textarea id="secondary-hero-description" placeholder="Secondary Hero Description"></textarea>
-                    <div class="form-buttons">
-                        <button type="submit">Save Settings</button>
+        <main class="main-content">
+            <header class="main-header">
+                <h1>Dashboard</h1>
+                <p>Welcome back, Admin! Manage your site content from here.</p>
+            </header>
+
+            <!-- Products Section -->
+            <section id="products-section" class="content-section">
+                <div class="form-section card">
+                    <h2 id="form-title">Add New Mod</h2>
+                    <form id="product-form">
+                        <input type="hidden" id="product-id">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="product-name">Mod Name</label>
+                                <input type="text" id="product-name" placeholder="e.g., Awesome Graphics Mod" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="product-price">Price (LKR)</label>
+                                <input type="number" id="product-price" placeholder="e.g., 1500.00" step="0.01" required>
+                            </div>
+                            <div class="form-group form-group-full">
+                                <label for="product-description">Description</label>
+                                <textarea id="product-description" rows="4" placeholder="Describe the mod..."></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="product-image-url">Preview Image URL</label>
+                                <input type="url" id="product-image-url" placeholder="https://..." required>
+                            </div>
+                            <div class="form-group">
+                                <label for="product-download-link">Product Download URL</label>
+                                <input type="url" id="product-download-link" placeholder="https://..." required>
+                            </div>
+                        </div>
+                        <img src="" alt="Image Preview" id="image-preview" class="hidden">
+                        <div class="form-buttons">
+                            <button type="submit">Save Product</button>
+                            <button type="button" id="cancel-edit" class="hidden">Cancel Edit</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="list-section card">
+                    <h2>Existing Mods</h2>
+                    <div id="product-list">
+                        <!-- Product items will be injected here by crud.js -->
                     </div>
-                </form>
-            </section>
-            <!-- Add/Edit Product Form -->
-            <section class="form-section">
-                <h2 id="form-title">Add New Mod</h2>
-                <form id="product-form">
-                    <input type="hidden" id="product-id">
-                    <input type="text" id="product-name" placeholder="Product Name" required>
-                    <textarea id="product-description" placeholder="Product Description" required></textarea>
-                    <input type="number" id="product-price" placeholder="Price (0 for free)" step="0.01" min="0" required>
-                    <label for="product-image-url">Preview Image URL</label>
-                    <input type="url" id="product-image-url" placeholder="https://example.com/your-image.jpg" required>
-                    <img id="image-preview" class="hidden" alt="Image Preview">
-                    <label for="product-download-link">Product Download Link (URL)</label>
-                    <input type="url" id="product-download-link" placeholder="https://example.com/your-mod-file.zip" required>
-                    <div class="form-buttons">
-                        <button type="submit">Save Product</button>
-                        <button type="button" id="cancel-edit" class="hidden">Cancel Edit</button>
-                    </div>
-                </form>
-                <p id="upload-progress" class="hidden"></p>
+                </div>
             </section>
 
-            <!-- Product List -->
-            <section class="list-section">
-                <h2>Manage Mods</h2>
-                <div id="product-list">
-                    <!-- Product list will be loaded here -->
+            <!-- Site Settings Section -->
+            <section id="settings-section" class="content-section hidden">
+                <div class="form-section card">
+                    <h2>Site Settings</h2>
+                    <form id="settings-form">
+                        <div class="form-grid">
+                            <div class="form-group"><label for="main-hero-title">Main Hero Title</label><input type="text" id="main-hero-title"></div>
+                            <div class="form-group"><label for="hero-image-url">Main Hero Image URL</label><input type="url" id="hero-image-url"></div>
+                            <div class="form-group form-group-full"><label for="main-hero-description">Main Hero Description</label><textarea id="main-hero-description" rows="3"></textarea></div>
+                            
+                            <div class="form-group"><label for="secondary-hero-title">Secondary Hero Title</label><input type="text" id="secondary-hero-title"></div>
+                            <div class="form-group"><label for="secondary-hero-image-url">Secondary Hero Image URL</label><input type="url" id="secondary-hero-image-url"></div>
+                            <div class="form-group form-group-full"><label for="secondary-hero-description">Secondary Hero Description</label><textarea id="secondary-hero-description" rows="3"></textarea></div>
+
+                            <div class="form-group"><label for="favicon-url">Favicon URL</label><input type="url" id="favicon-url"></div>
+                            <div class="form-group"><label for="whatsapp-number">WhatsApp Number</label><input type="text" id="whatsapp-number"></div>
+                        </div>
+                        <div class="form-buttons">
+                            <button type="submit">Save Settings</button>
+                        </div>
+                    </form>
                 </div>
             </section>
         </main>
@@ -70,9 +102,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
     <script src="../js/firebase-config.js"></script>
-    <script src="../js/favicon-loader.js"></script>
     <script src="auth.js"></script>
     <script src="crud.js"></script>
 </body>

@@ -1,89 +1,100 @@
 // js/product.js
 document.addEventListener('DOMContentLoaded', () => {
-    const productDetailContainer = document.getElementById('product-detail-container');
+    const productDetailPage = document.getElementById('product-detail-page');
 
     // Get product ID from URL query parameter
     const params = new URLSearchParams(window.location.search);
     const productId = params.get('id');
 
     if (!productId) {
-        productDetailContainer.innerHTML = '<h2>Product not found.</h2><p>Please go back to the store and select a product.</p>';
+        productDetailPage.innerHTML = '<p class="error-message">Product not found. Please return to the homepage.</p>';
         return;
     }
 
     // Fetch the specific product from Firestore
     const docRef = db.collection('products').doc(productId);
 
-    // Fetch both product and site settings
-    Promise.all([
-        docRef.get(),
-        db.collection('site_settings').doc('homepage').get()
-    ]).then(([doc, settingsDoc]) => {
+    // Fetch product and settings data from Firestore
+    const productPromise = docRef.get();
+    const settingsPromise = db.collection('site_settings').doc('homepage').get();
+
+    Promise.all([productPromise, settingsPromise]).then(([doc, settingsDoc]) => {
         if (doc.exists) {
             const product = doc.data();
             const settings = settingsDoc.exists ? settingsDoc.data() : {};
-            const isFree = product.price <= 0;
-            const priceDisplay = isFree ? 'Free' : `LKR ${product.price.toFixed(2)}`;
-            const image = product.imageUrl ? `<img src="${product.imageUrl}" alt="${product.name}" class="product-detail-image">` : '';
-
-            productDetailContainer.innerHTML = `
-                ${image}
-                <h2>${product.name}</h2>
-                <p>${product.description || 'No description available.'}</p>
-                <div class="product-price">${priceDisplay}</div>
-                <div id="action-button-container"></div>
-            `;
-
-            const buttonContainer = document.getElementById('action-button-container');
-
-            if (isFree) {
-                // Create a download button for free items
-                const downloadBtn = document.createElement('button');
-                downloadBtn.id = 'download-btn';
-                downloadBtn.className = 'btn';
-                downloadBtn.textContent = 'Download';
-                downloadBtn.dataset.downloadUrl = product.downloadUrl;
-                buttonContainer.appendChild(downloadBtn);
-
-                // Add event listener to handle download and count increment
-                downloadBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    downloadBtn.textContent = 'Processing...';
-                    downloadBtn.disabled = true;
-
-                    // Atomically increment the downloadCount field
-                    docRef.update({
-                        downloadCount: firebase.firestore.FieldValue.increment(1)
-                    }).then(() => {
-                        console.log(`Download count for ${productId} incremented.`);
-                        // Proceed with download after successful update
-                        window.open(downloadBtn.dataset.downloadUrl, '_blank');
-                    }).catch(error => {
-                        console.error("Error updating download count:", error);
-                        // Still allow download even if count fails
-                        window.open(downloadBtn.dataset.downloadUrl, '_blank');
-                    }).finally(() => {
-                        // Re-enable button after a short delay
-                        setTimeout(() => {
-                            downloadBtn.textContent = 'Download';
-                            downloadBtn.disabled = false;
-                        }, 1500);
-                    });
-                });
-            } else {
-                // Create a "Buy on WhatsApp" button for paid items
-                const message = encodeURIComponent(`Hello, I would like to purchase the "${product.name}" mod.`);
-                const whatsappUrl = settings.whatsappNumber ? `https://wa.me/${settings.whatsappNumber}?text=${message}` : '#';
-                const buttonClass = settings.whatsappNumber ? 'btn whatsapp-btn' : 'btn';
-                const buttonText = settings.whatsappNumber ? 'Buy on WhatsApp' : 'Contact to Purchase';
-                buttonContainer.innerHTML = `<a href="${whatsappUrl}" target="_blank" class="${buttonClass}">${buttonText}</a>`;
-            }
+            displayProduct(product, settings);
+            document.title = `${product.name} - Phoenix Girl`; // Update page title
         } else {
-            console.error("No such document!");
-            productDetailContainer.innerHTML = '<h2>Product not found.</h2>';
+            productDetailPage.innerHTML = '<p class="error-message">Sorry, this product could not be found.</p>';
         }
-    }).catch((error) => {
-        console.error("Error getting document:", error);
-        productDetailContainer.innerHTML = '<h2>Error loading product.</h2>';
+    }).catch(error => {
+        console.error("Error fetching page data:", error);
+        productDetailPage.innerHTML = '<p class="error-message">There was an error loading this product. Please try again later.</p>';
     });
+
+    function displayProduct(product, settings) {
+        const isFree = !product.price || product.price <= 0;
+        const priceDisplay = isFree ? 'Free' : `LKR ${product.price.toFixed(2)}`;
+
+        let buttonHtml;
+        if (isFree) {
+            // Use a button with a data attribute for the download logic, not a direct link
+            buttonHtml = `<button id="download-btn" class="cta-button" data-download-url="${product.downloadUrl}"><span class="material-icons-outlined">download</span> Download Now</button>`;
+        } else {
+            const whatsappNumber = settings.whatsappNumber || '';
+            if (whatsappNumber) {
+                const message = `Hi, I'm interested in purchasing the "${product.name}" mod.`;
+                const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+                buttonHtml = `<a href="${whatsappUrl}" class="cta-button" target="_blank" rel="noopener noreferrer"><span class="material-icons-outlined">shopping_cart</span> Purchase via WhatsApp</a>`;
+            } else {
+                buttonHtml = `<p class="error-message">Purchase information is currently unavailable.</p>`;
+            }
+        }
+
+        const productHtml = `
+            <div class="product-detail-layout">
+                <div class="product-image-gallery">
+                    <img src="${product.imageUrl}" alt="${product.name}" class="product-main-image">
+                </div>
+                <div class="product-info-panel">
+                    <h1 class="product-title">${product.name}</h1>
+                    <p class="product-price">${priceDisplay}</p>
+                    <div class="product-description">
+                        <h2>About this mod</h2>
+                        <p>${(product.description || 'No description available.').replace(/\n/g, '<br>')}</p>
+                    </div>
+                    <div class="product-actions">
+                        ${buttonHtml}
+                    </div>
+                </div>
+            </div>
+        `;
+        productDetailPage.innerHTML = productHtml;
+
+        // Add event listener for the download button if it exists
+        const downloadBtn = document.getElementById('download-btn');
+        if (downloadBtn) {
+            downloadBtn.addEventListener('click', () => {
+                downloadBtn.textContent = 'Processing...';
+                downloadBtn.disabled = true;
+
+                // Atomically increment the downloadCount field
+                docRef.update({
+                    downloadCount: firebase.firestore.FieldValue.increment(1)
+                }).then(() => {
+                    console.log(`Download count for ${productId} incremented.`);
+                }).catch(error => {
+                    console.error("Error updating download count:", error);
+                }).finally(() => {
+                    // Proceed with download regardless of count success
+                    window.open(downloadBtn.dataset.downloadUrl, '_blank');
+                    // Re-enable button after a short delay
+                    setTimeout(() => {
+                        downloadBtn.innerHTML = `<span class="material-icons-outlined">download</span> Download Now`;
+                        downloadBtn.disabled = false;
+                    }, 2000);
+                });
+            });
+        }
+    }
 });
