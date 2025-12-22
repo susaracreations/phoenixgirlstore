@@ -63,6 +63,12 @@ function initializeCrud() {
             secondaryHeroImageUrlInput.value = settings.secondaryHeroImageUrl || '';
             secondaryHeroTitleInput.value = settings.secondaryHeroTitle || '';
             secondaryHeroDescriptionInput.value = settings.secondaryHeroDescription || '';
+            // Tertiary Hero
+            document.getElementById('tertiary-hero-title').value = settings.tertiaryHeroTitle || '';
+            document.getElementById('tertiary-hero-description').value = settings.tertiaryHeroDescription || '';
+            document.getElementById('tertiary-hero-image-url').value = settings.tertiaryHeroImageUrl || '';
+            document.getElementById('tertiary-hero-button-text').value = settings.tertiaryHeroButtonText || '';
+            document.getElementById('tertiary-hero-button-link').value = settings.tertiaryHeroButtonLink || '';
         }
     }).catch(error => console.error("Error fetching site settings:", error));
 
@@ -77,7 +83,13 @@ function initializeCrud() {
             whatsappNumber: whatsappNumberInput.value,
             secondaryHeroImageUrl: secondaryHeroImageUrlInput.value,
             secondaryHeroTitle: secondaryHeroTitleInput.value,
-            secondaryHeroDescription: secondaryHeroDescriptionInput.value
+            secondaryHeroDescription: secondaryHeroDescriptionInput.value,
+            // Tertiary Hero
+            tertiaryHeroTitle: document.getElementById('tertiary-hero-title').value,
+            tertiaryHeroDescription: document.getElementById('tertiary-hero-description').value,
+            tertiaryHeroImageUrl: document.getElementById('tertiary-hero-image-url').value,
+            tertiaryHeroButtonText: document.getElementById('tertiary-hero-button-text').value,
+            tertiaryHeroButtonLink: document.getElementById('tertiary-hero-button-link').value,
         };
         settingsRef.set(settingsData, { merge: true })
             .then(() => alert('Site settings saved successfully!'))

@@ -21,15 +21,14 @@ document.addEventListener('DOMContentLoaded', () => {
             html += `
                 <a href="product.html?id=${productId}" class="product-card">
                     <div class="product-card-image-container">
-                        ${image}
                         ${tag}
-                        <div class="product-card-overlay">
-                            <span class="overlay-text">View Details</span>
-                        </div>
+                        ${image}
                     </div>
                     <div class="product-card-content">
-                        <h3>${product.name}</h3>
-                        <span class="product-card-price">${priceDisplay}</span>
+                        <h3 class="product-card-title">${product.name}</h3>
+                        <div class="product-card-footer">
+                            <span class="product-card-price">${priceDisplay}</span>
+                        </div>
                     </div>
                 </a>
             `;

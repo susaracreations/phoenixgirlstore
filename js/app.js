@@ -10,6 +10,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const secondaryHeroSection = document.querySelector('.secondary-hero');
         const secondaryHeroTitle = document.getElementById('secondary-hero-title-display');
         const secondaryHeroDescription = document.getElementById('secondary-hero-description-display');
+        const tertiaryHeroSection = document.getElementById('tertiary-hero');
+        const tertiaryHeroTitle = document.getElementById('tertiary-hero-title-display');
+        const tertiaryHeroDescription = document.getElementById('tertiary-hero-description-display');
+        const tertiaryHeroButton = document.getElementById('tertiary-hero-button');
 
         db.collection('site_settings').doc('homepage').get().then(settingsDoc => {
             if (settingsDoc.exists) {
@@ -33,6 +37,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
                 if (secondaryHeroDescription && settings.secondaryHeroDescription) {
                     secondaryHeroDescription.textContent = settings.secondaryHeroDescription;
+                }
+                // Tertiary hero
+                if (tertiaryHeroSection && settings.tertiaryHeroImageUrl) {
+                    tertiaryHeroSection.style.backgroundImage = `url('${settings.tertiaryHeroImageUrl}')`;
+                }
+                if (tertiaryHeroTitle && settings.tertiaryHeroTitle) {
+                    tertiaryHeroTitle.textContent = settings.tertiaryHeroTitle;
+                }
+                if (tertiaryHeroDescription && settings.tertiaryHeroDescription) {
+                    tertiaryHeroDescription.textContent = settings.tertiaryHeroDescription;
+                }
+                if (tertiaryHeroButton) {
+                    if (settings.tertiaryHeroButtonText) {
+                        tertiaryHeroButton.textContent = settings.tertiaryHeroButtonText;
+                        tertiaryHeroButton.href = settings.tertiaryHeroButtonLink || '#';
+                    } else {
+                        tertiaryHeroButton.style.display = 'none';
+                    }
                 }
             }
         }).catch(error => console.error("Error fetching hero image:", error));
@@ -58,15 +80,14 @@ document.addEventListener('DOMContentLoaded', () => {
             html += `
                 <a href="product.html?id=${productId}" class="product-card">
                     <div class="product-card-image-container">
-                        ${image}
                         ${tag}
-                        <div class="product-card-overlay">
-                            <span class="overlay-text">View Details</span>
-                        </div>
+                        ${image}
                     </div>
                     <div class="product-card-content">
-                        <h3>${product.name}</h3>
-                        <span class="product-card-price">${priceDisplay}</span>
+                        <h3 class="product-card-title">${product.name}</h3>
+                        <div class="product-card-footer">
+                            <span class="product-card-price">${priceDisplay}</span>
+                        </div>
                     </div>
                 </a>
             `;
