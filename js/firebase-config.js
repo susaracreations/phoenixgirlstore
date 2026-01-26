@@ -16,6 +16,16 @@ const firebaseConfig = {
 const app = firebase.initializeApp(firebaseConfig);
 
 // Initialize Firebase services
-const db = firebase.firestore();
-const auth = firebase.auth();
-const storage = firebase.storage();
+window.db = firebase.firestore();
+window.auth = firebase.auth();
+window.storage = firebase.storage();
+
+// Enable offline persistence to load data instantly on refresh
+window.db.enablePersistence({ synchronizeTabs: true })
+  .catch((err) => {
+      if (err.code == 'failed-precondition') {
+          console.warn('Persistence failed: Multiple tabs open.');
+      } else if (err.code == 'unimplemented') {
+          console.warn('Persistence failed: Browser not supported.');
+      }
+  });

@@ -1,5 +1,5 @@
 /* css/style.css - Public-facing styles */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 
 :root {
     --primary-color: #e53935; /* Red */
@@ -10,7 +10,7 @@
     --text-secondary: #a0a7b3;
     --card-bg: #1e1e1e;
     --border-color: #3a4048;
-    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-family: 'Space Grotesk', sans-serif;
     --radius: 8px;
     --shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
@@ -26,76 +26,6 @@ body.no-scroll {
     overflow: hidden;
 }
 
-
-header {
-    background-color: var(--surface-color);
-    padding: 0 2rem;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
-}
-
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    height: 70px;
-}
-
-.header-right {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-}
-
-.logo {
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: var(--text-color);
-    text-decoration: none;
-    letter-spacing: 1px;
-}
-
-.main-nav a {
-    color: var(--text-secondary);
-    text-decoration: none;
-    margin-left: 1rem;
-    font-weight: 500;
-    padding: 8px 12px;
-    border-radius: 6px;
-    transition: color 0.2s, background-color 0.2s;
-}
-
-.main-nav a:hover {
-    color: var(--text-primary);
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-.main-nav a.active {
-    color: var(--primary-color);
-    font-weight: 600;
-}
-
-.mobile-menu-toggle {
-    display: none; /* Hidden by default */
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    z-index: 1001;
-}
-
-.mobile-menu-toggle .bar {
-    display: block;
-    width: 25px;
-    height: 3px;
-    background-color: var(--text-primary);
-    margin: 5px 0;
-    transition: all 0.3s ease-in-out;
-}
 .container {
     width: 100%;
     max-width: 1200px;
@@ -373,73 +303,162 @@ main {
     background-color: var(--primary-color-dark);
 }
 
+@media (max-width: 768px) {
+    .login-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+}
+
 /* Auth Page (Login/Sign Up) */
+body.auth-page main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80vh;
+}
+
 .auth-container {
-    max-width: 400px;
-    margin: 2rem auto;
-    padding: 2rem;
-    background-color: var(--card-bg);
-    border-radius: 8px;
+    width: 100%;
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 3rem 2.5rem;
+    background-color: rgba(30, 30, 30, 0.4);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 24px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Glow effect */
+.auth-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(229, 57, 53, 0.15) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: -1;
 }
 
 .auth-container h2 {
     text-align: center;
-    color: var(--primary-color);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    color: #fff;
+    text-shadow: 0 0 20px rgba(229, 57, 53, 0.4);
 }
 
 .auth-container input {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 1rem;
-    border: 1px solid #444;
-    border-radius: 4px;
-    background-color: #333;
-    color: var(--text-color);
+    padding: 14px 16px;
+    margin-bottom: 1.25rem;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: #fff;
+    font-size: 1rem;
     box-sizing: border-box;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    transition: all 0.3s ease;
 }
 
 .auth-container input:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(229, 57, 53, 0.2);
+    background-color: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 0 4px rgba(229, 57, 53, 0.15);
+    transform: translateY(-1px);
+}
+
+/* Specific styling for buttons inside auth container */
+.auth-container .login-btn {
+    width: 100%;
+    padding: 14px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #e53935, #c62828);
+    box-shadow: 0 4px 15px rgba(229, 57, 53, 0.3);
+    margin-top: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.auth-container .login-btn:hover {
+    background: linear-gradient(135deg, #ef5350, #d32f2f);
+    box-shadow: 0 8px 25px rgba(229, 57, 53, 0.5);
+    transform: translateY(-2px);
 }
 
 .auth-toggle {
     text-align: center;
-    margin-top: 1.5rem;
+    margin-top: 2rem;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.auth-toggle a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 5px;
+    transition: color 0.2s;
+}
+
+.auth-toggle a:hover {
+    color: #ff8a80;
+    text-decoration: underline;
 }
 
 .or-separator {
     text-align: center;
     margin: 1.5rem 0;
-    color: #888;
+    color: var(--text-secondary);
     display: flex;
     align-items: center;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .or-separator::before, .or-separator::after {
     content: '';
     flex-grow: 1;
     height: 1px;
-    background: #444;
+    background: rgba(255, 255, 255, 0.1);
     margin: 0 1rem;
 }
 
 .google-btn {
-    background-color: #fff;
-    color: #444;
-    border: 1px solid #ddd;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
+    gap: 12px;
+    padding: 14px;
+    border-radius: 12px;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 .google-btn:hover {
-    background-color: #f5f5f5;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 .google-icon {
-    width: 18px; height: 18px;
+    width: 20px; 
+    height: 20px;
 }
 
 /* =================================== */
@@ -576,14 +595,95 @@ main {
     background-color: #c62828; /* Darker Red */
 }
 
-footer, .site-footer {
-    text-align: center;
-    padding: 1.5rem;
-    margin-top: 2rem;
-    background-color: #1a1a1a;
-    font-size: 0.9rem;
-    border-top: 1px solid var(--border-color);
+/* Professional Glassmorphism Footer Styles */
+.site-footer {
+    background: rgba(15, 15, 15, 0.7);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px); /* Safari support */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 50px 20px 20px;
+    margin-top: 4rem;
+    color: #aaa; /* Muted gray for paragraphs */
+    font-size: 0.95rem;
 }
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.footer-brand h3 {
+    color: #fff; /* Brighter heading */
+    font-size: 1.5rem;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.footer-brand p {
+    line-height: 1.6;
+    max-width: 350px;
+}
+
+.footer-links h4 {
+    color: #fff;
+    font-size: 1.1rem;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: #aaa; /* Muted gray for links */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #ff4d4d; /* Red hover effect */
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255, 255, 255, 0.05); /* Subtle separator line */
+    padding-top: 20px;
+    margin-top: 40px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #777;
+}
+
+/* MOBILE OPTIMIZATION */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 30px;
+    }
+    .footer-brand {
+        margin-bottom: 10px;
+    }
+    .footer-brand p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .footer-bottom {
+        flex-direction: column;
+    }
+}
+
 .hidden {
     display: none;
 }
@@ -644,50 +744,6 @@ footer, .site-footer {
         font-size: 2rem;
     }
 }
-@media (max-width: 768px) {
-    .header-container {
-        padding: 0 1.5rem; /* Ensure padding is consistent */
-    }
-
-    .mobile-menu-toggle {
-        display: block;
-    }
-
-    .header-right {
-        position: fixed;
-        top: 0;
-        right: -100%; /* Start off-screen */
-        width: 100%;
-        height: 100vh;
-        background-color: var(--surface-color);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 2rem;
-        transition: right 0.4s ease-in-out;
-        z-index: 1000;
-    }
-
-    .header-right.mobile-active {
-        right: 0;
-    }
-
-    .main-nav {
-        flex-direction: column;
-        gap: 1.5rem;
-    }
-
-    .main-nav a {
-        font-size: 1.5rem;
-        margin-left: 0;
-    }
-
-    .user-auth {
-        flex-direction: column;
-        gap: 1.5rem;
-        font-size: 1.2rem;
-    }
-}
 
 /* =================================== */
 /* == About Page Styles == */
@@ -733,23 +789,69 @@ footer, .site-footer {
     line-height: 1.7;
 }
 
-.team-member {
+/* New Team Section Styles */
+.team-section {
+    padding: 60px 0;
     text-align: center;
 }
-.team-member img {
+
+.section-title {
+    color: white;
+    font-size: 2rem;
+    margin-bottom: 40px;
+    border-bottom: 2px solid var(--primary-color);
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+.team-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap; /* Essential for mobile stacking */
+}
+
+.team-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+    width: 280px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box;
+}
+
+.team-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+
+.image-wrapper {
+    margin-bottom: 20px;
+}
+
+.image-wrapper img {
     width: 150px;
     height: 150px;
     border-radius: 50%;
+    border: 3px solid var(--primary-color);
+    box-shadow: 0 0 20px rgba(229, 57, 53, 0.4);
     object-fit: cover;
-    border: 3px solid var(--border-color);
-    margin-bottom: 1rem;
 }
-.team-member h3 {
+
+.team-card h3 {
+    color: white;
     margin: 0;
     font-size: 1.4rem;
+    margin-bottom: 5px;
 }
-.team-member span {
+
+.team-card p {
     color: var(--text-secondary);
+    font-size: 0.9rem;
+    margin: 0;
 }
 /* =================================== */
 /* == Community Stats Section == */
@@ -869,8 +971,6 @@ footer, .site-footer {
     background-color: var(--surface-color);
     background-size: cover;
     background-position: center;
-    border-top: 1px solid var(--border-color);
-    border-bottom: 1px solid var(--border-color);
     min-height: 250px;
     display: flex;
     flex-direction: column;
@@ -895,3 +995,26 @@ footer, .site-footer {
     font-size: 2.5rem;
     color: var(--text-primary);
 }
+
+/* Skeleton Loading Animation */
+.skeleton-card {
+    opacity: 1 !important; /* Override fade-in animation for instant loading state */
+    animation: none !important;
+    pointer-events: none;
+    border-color: #333;
+}
+
+.skeleton {
+    background: #2a2a2a;
+    background: linear-gradient(110deg, #2a2a2a 8%, #323232 18%, #2a2a2a 33%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite linear;
+}
+
+@keyframes shimmer {
+    to { background-position-x: -200%; }
+}
+
+.skeleton-image { width: 100%; height: 200px; display: block; }
+.skeleton-title { height: 20px; width: 70%; margin-bottom: 15px; border-radius: 4px; }
+.skeleton-price { height: 20px; width: 30%; border-radius: 4px; }

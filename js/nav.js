@@ -1,15 +1,20 @@
 // js/nav.js
 document.addEventListener('DOMContentLoaded', () => {
-    const menuToggle = document.getElementById('mobile-menu-toggle');
-    const mobileNav = document.querySelector('.main-nav');
-    const headerRight = document.querySelector('.header-right');
+    // --- Footer Links Logic ---
+    const discordLink = document.getElementById('footer-discord-link');
+    const youtubeLink = document.getElementById('footer-youtube-link');
 
-    if (menuToggle && headerRight) {
-        menuToggle.addEventListener('click', () => {
-            // Toggle a class on the header-right container to show/hide it
-            headerRight.classList.toggle('mobile-active');
-            // Add a class to body to prevent scrolling when menu is open
-            document.body.classList.toggle('no-scroll');
+    // Only fetch if the elements exist
+    if (discordLink || youtubeLink) {
+        // Use onSnapshot to load from cache instantly if available
+        db.collection('site_settings').doc('homepage').onSnapshot(doc => {
+            if (doc.exists) {
+                const data = doc.data();
+                if (discordLink && data.discordUrl) discordLink.href = data.discordUrl;
+                if (youtubeLink && data.youtubeUrl) youtubeLink.href = data.youtubeUrl;
+            }
+        }, error => {
+            console.error("Error fetching footer links:", error);
         });
     }
 });

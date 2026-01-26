@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (logoutButton) {
         logoutButton.addEventListener('click', () => {
             auth.signOut().then(() => {
-                window.location.href = 'index.html';
+                window.location.href = 'admin-login.html';
             }).catch((error) => {
                 console.error('Logout Error:', error);
             });
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         auth.onAuthStateChanged(async (user) => {
             if (!user) {
                 // If no user is logged in, redirect to the login page
-                window.location.href = 'index.html';
+                window.location.href = 'admin-login.html';
             } else {
                 // If a user is logged in, verify they are an admin
                 const adminDocRef = db.collection('admins').doc(user.uid);
@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (!adminDoc.exists) {
                     // This user is not an admin, kick them out
                     await auth.signOut();
-                    window.location.href = 'index.html';
+                    window.location.href = 'admin-login.html';
                 }
             }
         });
