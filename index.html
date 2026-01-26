@@ -7,93 +7,178 @@
     <title>Phoenix Girl Mods Store</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/loader.css">
+    <link rel="preconnect" href="https://firestore.googleapis.com">
+    <link rel="preconnect" href="https://www.googleapis.com">
+    <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
 </head><body>
-    <header>
-        <div class="header-container">
-            <a href="/" class="logo">Phoenix Girl</a>
-            <div class="header-right">
-                <nav class="main-nav">
-                    <a href="products.html">Mods</a>
-                    <a href="about.html">About</a>
-                </nav>
-                <div id="user-auth-section" class="user-auth"></div>
+    <!-- Professional Loader -->
+    <div class="loader-wrapper" id="loader-wrapper">
+        <div class="loader-card">
+            <div class="logo-box">
+                <svg class="phoenix-p-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="logo-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#ff4d4d;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#f97316;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                    <path d="M30 20 H70 C80 20 85 30 85 40 C85 55 75 60 65 60 H45 L35 80 H25 L40 50 H30 V20Z" 
+                          fill="url(#logo-gradient)" />
+                </svg>
             </div>
-            <button id="mobile-menu-toggle" class="mobile-menu-toggle">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
+            <h1 class="brand-name">PHOENIX <span>GIRL</span></h1>
+            <p class="subtext">— GENURA CREATIONS —</p>
+            
+            <div class="progress-container">
+                <div class="progress-bar" id="bar"></div>
+            </div>
+            
+            <div class="status-row">
+                <span class="status-text">INITIALIZING ENGINE</span>
+                <span class="percent-text" id="percent">0%</span>
+            </div>
         </div>
-    </header>
+    </div>
 
-    <section class="hero">
-        <h2 id="main-hero-title-display">Phoenix Girl Mods Store</h2>
-        <p id="main-hero-description-display">Discover exclusive, high-quality mods crafted with passion in Sri Lanka.</p>
-        <a href="#products-section" class="btn hero-btn">Explore Mods</a>
-    </section>
+    <!-- Main Page Content (Initially Hidden) -->
+    <div id="main-content" class="hidden">
+        <header-component></header-component>
 
-    <main>
+        <section class="hero">
+            <h2 id="main-hero-title-display">Phoenix Girl Mods Store</h2>
+            <p id="main-hero-description-display">Discover exclusive, high-quality mods crafted with passion in Sri Lanka.</p>
+            <a href="#products-section" class="btn hero-btn">Explore Mods</a>
+        </section>
+
+        <main>
         <section id="products-section">
             <h2>Featured Mods</h2>
             <div id="products-grid" class="products-grid">
                 <!-- Products will be dynamically loaded here by JavaScript -->
-                <p>Loading mods...</p>
+                <!-- Skeleton Loading State -->
+                <div class="product-card skeleton-card">
+                    <div class="skeleton skeleton-image"></div>
+                    <div class="product-card-content">
+                        <div class="skeleton skeleton-title"></div>
+                        <div class="product-card-footer">
+                            <div class="skeleton skeleton-price"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card skeleton-card">
+                    <div class="skeleton skeleton-image"></div>
+                    <div class="product-card-content">
+                        <div class="skeleton skeleton-title"></div>
+                        <div class="product-card-footer">
+                            <div class="skeleton skeleton-price"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card skeleton-card">
+                    <div class="skeleton skeleton-image"></div>
+                    <div class="product-card-content">
+                        <div class="skeleton skeleton-title"></div>
+                        <div class="product-card-footer">
+                            <div class="skeleton skeleton-price"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-card skeleton-card">
+                    <div class="skeleton skeleton-image"></div>
+                    <div class="product-card-content">
+                        <div class="skeleton skeleton-title"></div>
+                        <div class="product-card-footer">
+                            <div class="skeleton skeleton-price"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="view-all-container">
                 <a href="products.html" class="btn">View All Products</a>
             </div>
         </section>
-    </main>
+        </main>
 
-    <section class="secondary-hero">
-        <h2 id="secondary-hero-title-display">Ready to Enhance Your Experience?</h2>
-        <p id="secondary-hero-description-display">Explore our full collection of mods and find the perfect additions to your digital world.</p>
-        <a href="products.html" class="btn secondary-hero-btn">Browse All Mods</a>
-    </section>
+        <section class="secondary-hero">
+            <h2 id="secondary-hero-title-display">Ready to Enhance Your Experience?</h2>
+            <p id="secondary-hero-description-display">Explore our full collection of mods and find the perfect additions to your digital world.</p>
+            <a href="products.html" class="btn secondary-hero-btn">Browse All Mods</a>
+        </section>
 
-    <section id="community-stats" class="community-stats-section">
-        <h2>Community Stats</h2>
-        <div class="stats-container">
-            <div class="stat-box">
-                <div class="stat-icon">
-                    <!-- Icon for Mods -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+        <section id="community-stats" class="community-stats-section">
+            <h2>Community Stats</h2>
+            <div class="stats-container">
+                <div class="stat-box">
+                    <div class="stat-icon">
+                        <!-- Icon for Mods -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                    </div>
+                    <h3 id="available-mods-count">--</h3>
+                    <p>Available Mods</p>
                 </div>
-                <h3 id="available-mods-count">--</h3>
-                <p>Available Mods</p>
-            </div>
-            <div class="stat-box">
-                <div class="stat-icon">
-                    <!-- Icon for Downloads -->
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                <div class="stat-box">
+                    <div class="stat-icon">
+                        <!-- Icon for Downloads -->
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    </div>
+                    <h3 id="total-downloads-count">--</h3>
+                    <p>Mods Downloaded</p>
                 </div>
-                <h3 id="total-downloads-count">--</h3>
-                <p>Mods Downloaded</p>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Tertiary Hero Section -->
-    <section id="tertiary-hero" class="tertiary-hero">
-        <div class="container">
-            <h2 id="tertiary-hero-title-display">Join the Community!</h2>
-            <p id="tertiary-hero-description-display">Connect with us Discord!</p>
-            <a href="#" id="tertiary-hero-button" class="btn tertiary-hero-btn">Join Discord</a>
-        </div>
-    </section>
+        <!-- Tertiary Hero Section -->
+        <section id="tertiary-hero" class="tertiary-hero">
+            <div class="container">
+                <h2 id="tertiary-hero-title-display">Join the Community!</h2>
+                <p id="tertiary-hero-description-display">Connect with us Discord!</p>
+                <a href="#" id="tertiary-hero-button" class="btn tertiary-hero-btn">Join Discord</a>
+            </div>
+        </section>
 
-    <footer>
-        <p>&copy; 2024 Phoenix Girl Mods Store. Based in Sri Lanka.</p>
-    </footer>
+        <footer class="site-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <h3>Phoenix Girl</h3>
+                        <p>Creating immersive mods and digital experiences. Join our community to stay updated with the latest releases and exclusive content.</p>
+                    </div>
+                    <div class="footer-links">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="products.html">Mods</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-links">
+                        <h4>Community</h4>
+                        <ul>
+                            <li><a href="#" id="footer-discord-link" target="_blank">Discord</a></li>
+                            <li><a href="#" id="footer-youtube-link" target="_blank">YouTube</a></li>
+                            <li><a href="#">Support</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 Phoenix Girl Mods Store. Based in Sri Lanka.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
 
     <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
 
     <!-- Your Scripts -->
+    <script src="js/loader.js"></script>
     <script src="js/firebase-config.js"></script>
+    <script src="js/header-component.js"></script>
     <script src="js/favicon-loader.js"></script> <!-- This was already present, which is great! -->
     <script src="js/user-auth.js"></script>
     <script src="js/app.js"></script>
@@ -102,5 +187,3 @@
     <script src="js/christmas-theme.js"></script>
 </body>
 </html>
-
-

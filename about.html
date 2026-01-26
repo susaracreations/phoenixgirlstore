@@ -2,7 +2,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="https://autographmarquisbuffet.com/45/cd/c8/45cdc8898748761d38fd0ecc1e47638c.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - Phoenix Girl</title>
@@ -10,23 +9,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <div class="header-container">
-            <a href="/" class="logo">Phoenix Girl</a>
-            <div class="header-right">
-                <nav class="main-nav">
-                    <a href="products.html">Mods</a>
-                    <a href="about.html" class="active">About</a>
-                </nav>
-                <div id="user-auth-section" class="user-auth"></div>
-            </div>
-            <button id="mobile-menu-toggle" class="mobile-menu-toggle">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-        </div>
-    </header>
+    <header-component></header-component>
 
     <main class="container">
         <div class="page-hero">
@@ -45,32 +28,73 @@
                 <p>Founded in Sri Lanka, Phoenix Girl started as a passion project by a small group of dedicated developers and artists. What began as a hobby quickly grew into a mission to deliver professional-grade mods to the gaming community. We combine our technical expertise with a deep love for gaming to create unique and memorable content.</p>
             </div>
 
-            <div class="about-section team-section">
-                <h2>Meet the Team</h2>
-                <div class="team-grid">
-                    <div class="team-member">
-                        <img src="https://i.ibb.co/XkjYxJFJ/gaming-naviya-logo.png" alt="Team Member 1">
+            <section class="team-section">
+                <h2 class="section-title">Meet the Team</h2>
+                <div class="team-container">
+                    <div class="team-card">
+                        <div class="image-wrapper">
+                            <img src="https://i.ibb.co/XkjYxJFJ/gaming-naviya-logo.png" alt="Naviya">
+                        </div>
                         <h3>Naviya</h3>
-                        <span>Lead Developer & Founder</span>
+                        <p>Co-Founder</p>
                     </div>
-                    <!-- Add more team members here if you like -->
+
+                    <div class="team-card">
+                        <div class="image-wrapper">
+                            <!-- Placeholder image, replace with actual image URL -->
+                            <img src="https://media.istockphoto.com/id/1196083861/vector/simple-man-head-icon-set.jpg?s=612x612&w=0&k=20&c=a8fwdX6UKUVCOedN_p0pPszu8B4f6sjarDmUGHngvdM=" alt="Team Member">
+                        </div>
+                        <h3>Genura</h3>
+                        <p>Founder</p>
+                    </div>
+
+                    <div class="team-card">
+                        <div class="image-wrapper">
+                            <!-- Placeholder image, replace with actual image URL -->
+                            <img src="https://i.ibb.co/Vp3HmSkL/cff6857e1c6c.png" alt="Team Member">
+                        </div>
+                        <h3>Susara</h3>
+                        <p>Web Designer</p>
+                    </div>
                 </div>
-            </div>
+            </section>
         </div>
     </main>
 
     <footer class="site-footer">
         <div class="container">
-            <p>&copy; 2024 Phoenix Girl. All Rights Reserved.</p>
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h3>Phoenix Girl</h3>
+                    <p>Creating immersive mods and digital experiences. Join our community to stay updated with the latest releases and exclusive content.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="products.html">Mods</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="#" id="footer-discord-link" target="_blank">Discord</a></li>
+                        <li><a href="#" id="footer-youtube-link" target="_blank">YouTube</a></li>
+                        <li><a href="#">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Phoenix Girl Mods Store. Based in Sri Lanka.</p>
+            </div>
         </div>
     </footer>
 
     <script src="js/firebase-config.js"></script>
+    <script src="js/header-component.js"></script>
     <script src="js/favicon-loader.js"></script>
     <script src="js/user-auth.js"></script>
     <script src="js/nav.js"></script>
 </body>
-
 </html>
-
-
