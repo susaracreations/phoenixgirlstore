@@ -1,12 +1,12 @@
 /* css/loader.css */
 
 :root {
-    --primary-glow: #ff4d4d;
-    --card-bg: rgba(20, 20, 20, 0.8);
+    --loader-primary: #ff4d4d;
+    --loader-bg: #121212;
 }
 
 .loader-wrapper {
-    background: #0a0a0a;
+    background: var(--loader-bg);
     position: fixed;
     top: 0;
     left: 0;
@@ -24,95 +24,36 @@
     pointer-events: none;
 }
 
-.loader-card {
-    background: var(--card-bg);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    padding: 40px;
-    border-radius: 24px;
-    width: 90%;
-    max-width: 400px; /* Prevents stretching on desktop */
-    text-align: center;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+.loader-content {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 1.5rem;
+    text-align: center;
 }
 
-.logo-box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
+.spinner {
+    width: 48px;
+    height: 48px;
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    border-top-color: var(--loader-primary);
+    animation: spin 1s ease-in-out infinite;
 }
 
-.phoenix-p-logo {
-    width: 80px;  /* Size for mobile */
-    height: 80px;
-    filter: drop-shadow(0 0 12px rgba(255, 77, 77, 0.8));
-    animation: pulse-glow 1.5s infinite alternate ease-in-out;
-}
-
-.brand-name {
-    color: white;
-    font-size: 1.8rem;
-    letter-spacing: 2px;
-    margin: 15px 0 5px;
-    font-weight: 800;
-}
-
-.brand-name span { color: var(--primary-glow); }
-
-.subtext {
-    color: #888;
-    font-size: 0.75rem;
+.loader-text {
+    color: #ffffff;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
     letter-spacing: 3px;
-    margin-bottom: 20px;
+    font-weight: 500;
+    opacity: 0.8;
     text-transform: uppercase;
 }
 
-.progress-container {
-    background: rgba(255,255,255,0.1);
-    height: 6px;
-    width: 100%;
-    border-radius: 10px;
-    margin: 15px 0 15px;
-    overflow: hidden;
-}
-
-.progress-bar {
-    background: linear-gradient(90deg, #ff4d4d, #f97316);
-    height: 100%;
-    width: 0%;
-    box-shadow: 0 0 10px var(--primary-glow);
-    transition: width 0.03s linear;
-}
-
-.status-row {
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    font-size: 0.7rem;
-    color: #666;
-    font-family: monospace;
-    font-weight: bold;
-}
-
-.percent-text {
-    color: var(--primary-glow);
-}
-
 /* Animations */
-@keyframes pulse-glow {
-    0% {
-        transform: scale(1);
-        filter: drop-shadow(0 0 8px rgba(255, 77, 77, 0.6));
-    }
-    100% {
-        transform: scale(1.08);
-        filter: drop-shadow(0 0 20px rgba(255, 77, 77, 1));
-    }
+@keyframes spin {
+    to { transform: rotate(360deg); }
 }
 
 /* Main Content Fade-in */
@@ -123,18 +64,4 @@
 @keyframes contentFadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
-}
-
-/* Responsive Font Scaling */
-@media (max-width: 768px) {
-    .brand-name { font-size: 1.4rem; }
-    .loader-card { padding: 30px 20px; }
-}
-
-/* Tablet/Desktop scale up */
-@media (min-width: 768px) {
-    .phoenix-p-logo {
-        width: 120px;
-        height: 120px;
-    }
 }

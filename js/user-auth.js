@@ -48,38 +48,57 @@ function initializeAuthPage() {
     const toggleLink = document.getElementById('toggle-link');
     const toggleText = document.getElementById('toggle-text');
     const googleSignInBtn = document.getElementById('google-signin-btn');
+    const googleMobileMsg = document.getElementById('google-mobile-msg');
     const authTitle = document.getElementById('auth-title');
+
+    // Listen for auth state changes to handle successful login/redirect
+    auth.onAuthStateChanged(user => {
+        if (user) {
+            window.location.href = 'index.html';
+        }
+    });
+
+    // Ensure default state: Login visible, Signup hidden
+    loginForm.classList.remove('hidden');
+    signupForm.classList.add('hidden');
 
     // Toggle between Login and Sign Up views
     toggleLink.addEventListener('click', (e) => {
         e.preventDefault();
-        const isSignUpVisible = !signupForm.classList.contains('hidden');
+        
+        // Clear any previous error messages
+        if (authError) authError.textContent = '';
 
-        if (isSignUpVisible) {
-            // Switch to Login
-            authTitle.textContent = 'Login';
-            toggleText.textContent = "Don't have an account?";
-            toggleLink.textContent = 'Sign Up';
-            loginForm.classList.remove('hidden');
-            loginForm.classList.add('form-enter');
-            signupForm.classList.add('form-exit');
-        } else {
+        // Check if Login is currently visible
+        const isLoginVisible = !loginForm.classList.contains('hidden');
+
+        if (isLoginVisible) {
             // Switch to Sign Up
+            loginForm.classList.add('hidden');
+            loginForm.classList.remove('form-enter');
+            loginForm.reset(); // Reset Login inputs
+
+            signupForm.classList.remove('hidden');
+            signupForm.classList.add('form-enter');
+            signupForm.reset(); // Reset Signup inputs (clear previous attempts)
+
             authTitle.textContent = 'Sign Up';
             toggleText.textContent = 'Already have an account?';
             toggleLink.textContent = 'Login';
-            signupForm.classList.remove('hidden');
-            signupForm.classList.add('form-enter');
-            loginForm.classList.add('form-exit');
-        }
-    });
+        } else {
+            // Switch to Login
+            signupForm.classList.add('hidden');
+            signupForm.classList.remove('form-enter');
+            signupForm.reset(); // Reset Signup inputs
 
-    // Use animationend event to toggle visibility after animation completes
-    loginForm.addEventListener('animationend', () => {
-        if (loginForm.classList.contains('form-exit')) loginForm.classList.add('hidden');
-    });
-    signupForm.addEventListener('animationend', () => {
-        if (signupForm.classList.contains('form-exit')) signupForm.classList.add('hidden');
+            loginForm.classList.remove('hidden');
+            loginForm.classList.add('form-enter');
+            loginForm.reset(); // Reset Login inputs
+
+            authTitle.textContent = 'Login';
+            toggleText.textContent = "Don't have an account?";
+            toggleLink.textContent = 'Sign Up';
+        }
     });
 
 
@@ -115,14 +134,24 @@ function initializeAuthPage() {
 
     // Handle Google Sign-In
     if (googleSignInBtn) {
+        // Hide Google Sign-In on mobile/tablet devices (width < 1024px)
+        if (window.innerWidth < 1024) {
+            googleSignInBtn.style.display = 'none';
+            if (googleMobileMsg) googleMobileMsg.style.display = 'block';
+        }
+
         googleSignInBtn.addEventListener('click', () => {
             const provider = new firebase.auth.GoogleAuthProvider();
-            auth.signInWithPopup(provider)
+            
+            // Set persistence to LOCAL to fix sessionStorage errors on mobile
+            auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+                .then(() => {
+                    return auth.signInWithPopup(provider);
+                })
                 .then((result) => {
-                    // This gives you a Google Access Token. You can use it to access the Google API.
-                    window.location.href = '/'; // Redirect to homepage on successful login
-                }).catch((error) => {
-                    // Handle Errors here.
+                    window.location.href = 'home.html';
+                })
+                .catch((error) => {
                     authError.textContent = error.message;
                 });
         });
