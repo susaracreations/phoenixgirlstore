@@ -5,13 +5,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Phoenix Girl Mods Store</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/sf-pro-display" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/loader.css">
     <link rel="preconnect" href="https://firestore.googleapis.com">
     <link rel="preconnect" href="https://www.googleapis.com">
     <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
 </head><body>
+
+
+    <script> // Anti Adblocker
+  (function () {
+    function detectAdBlock() {
+        return new Promise((resolve) => {
+            let bait = document.createElement("div");
+            bait.className = "adsbox ad-banner ad-unit"; // Common blocked ad-related class names
+            bait.style.width = "1px";
+            bait.style.height = "1px";
+            bait.style.position = "absolute";
+            bait.style.left = "-9999px";
+            bait.style.visibility = "hidden"; // Make it harder to detect by AdBlock itself
+            document.body.appendChild(bait);
+
+            setTimeout(() => {
+                let isBlocked = !bait || bait.offsetParent === null || window.getComputedStyle(bait).display === "none";
+                document.body.removeChild(bait);
+                resolve(isBlocked);
+            }, 100); // Reduced timeout for better performance
+        });
+    }
+
+    function showAdblockPopup() {
+        let overlay = document.createElement("div");
+        overlay.id = "adblock-overlay";
+        overlay.style.position = "fixed";
+        overlay.style.top = "0";
+        overlay.style.left = "0";
+        overlay.style.width = "100%";
+        overlay.style.height = "100%";
+        overlay.style.backgroundColor = "rgba(18, 18, 18, 0.95)";
+        overlay.style.backdropFilter = "blur(10px)";
+        overlay.style.display = "flex";
+        overlay.style.justifyContent = "center";
+        overlay.style.alignItems = "center";
+        overlay.style.zIndex = "9999";
+        overlay.innerHTML = `
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 40px; text-align: center; max-width: 480px; border-radius: 16px; margin: 20px; background: #1e1e1e; color: #f5f5f5; border: 1px solid #3a4048; box-shadow: 0 20px 50px rgba(0,0,0,0.5); font-family: 'Space Grotesk', sans-serif;">
+                <span class="material-icons-outlined" style="font-size: 64px; color: #e53935; margin-bottom: 20px;">gpp_bad</span>
+                <h2 style="margin: 0 0 15px; font-weight: 700; font-size: 2rem; color: #fff;">AdBlocker Detected</h2>
+                <p style="margin-bottom: 30px; color: #a0a7b3; line-height: 1.6; font-size: 1.1rem;">We rely on ads to keep Phoenix Girl running and to provide free high-quality mods. Please disable your ad blocker or whitelist our site to continue.</p>
+                <button id="refresh-page" style="padding: 14px 32px; font-size: 1.1rem; font-weight: 600; cursor: pointer; background: #e53935; color: white; border: none; border-radius: 8px; transition: background 0.2s; font-family: inherit;">Refresh Page</button>
+            </div>
+        `;
+        document.body.appendChild(overlay);
+
+        const btn = document.getElementById("refresh-page");
+        btn.onmouseover = () => btn.style.background = "#c62828";
+        btn.onmouseout = () => btn.style.background = "#e53935";
+
+        document.getElementById("refresh-page").addEventListener("click", function () {
+            location.reload();
+        });
+        
+        document.body.style.overflow = "hidden";
+    }
+
+    window.addEventListener("load", () => {
+        detectAdBlock().then((adBlockDetected) => {
+            if (adBlockDetected) {
+                showAdblockPopup();
+            }
+        });
+    });
+})();
+</script>
+
     <!-- Professional Loader -->
     <div class="loader-wrapper" id="loader-wrapper">
         <div class="loader-content">
@@ -148,7 +216,7 @@
                         <ul>
                             <li><a href="https://discord.com/invite/NPpsXz5RzR" id="footer-discord-link" target="_blank">Discord</a></li>
                             <li><a href="https://www.youtube.com/@GenuraCreations-m3e" id="footer-youtube-link" target="_blank">YouTube</a></li>
-                            <li><a href="#">Support</a></li>
+                            <li><a href="https://api.whatsapp.com/send/?phone=%2B94772702422&text&type=phone_number&app_absent=0">Whatsapp</a></li>
                         </ul>
                     </div>
                 </div>

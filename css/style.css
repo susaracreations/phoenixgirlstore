@@ -1,5 +1,5 @@
 /* css/style.css - Public-facing styles */
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.cdnfonts.com/css/sf-pro-display');
 
 :root {
     --primary-color: #e53935; /* Red */
@@ -10,7 +10,7 @@
     --text-secondary: #a0a7b3;
     --card-bg: #1e1e1e;
     --border-color: #3a4048;
-    --font-family: 'Space Grotesk', sans-serif;
+    --font-family: 'SF Pro Display', sans-serif;
     --radius: 8px;
     --shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
@@ -228,7 +228,7 @@ main {
 
 .product-card-footer::after {
     content: 'arrow_forward';
-    font-family: 'Material Icons Outlined';
+    font-family: 'SF Pro Display', sans-serif;
     color: var(--text-secondary);
     opacity: 0;
     transform: translateX(-10px);
