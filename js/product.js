@@ -41,14 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Use a button with a data attribute for the download logic, not a direct link
             buttonHtml = `<button id="download-btn" class="cta-button" data-download-url="${product.downloadUrl}"><span class="material-icons-outlined">download</span> Download Now</button>`;
         } else {
-            const whatsappNumber = settings.whatsappNumber || '';
-            if (whatsappNumber) {
-                const message = `Hi, I'm interested in purchasing the "${product.name}" mod.`;
-                const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
-                buttonHtml = `<a href="${whatsappUrl}" class="cta-button" target="_blank" rel="noopener noreferrer"><span class="material-icons-outlined">shopping_cart</span> Purchase via WhatsApp</a>`;
-            } else {
-                buttonHtml = `<p class="error-message">Purchase information is currently unavailable.</p>`;
-            }
+            buttonHtml = `<a href="checkout.html?id=${productId}" class="cta-button"><span class="material-icons-outlined">shopping_cart</span> Buy Now</a>`;
         }
 
         const productHtml = `

@@ -1056,3 +1056,173 @@ body.auth-page main {
         display: block;
     }
 }
+
+/* Checkout Page Styles */
+.checkout-layout {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 3rem;
+    margin-top: 2rem;
+    margin-bottom: 4rem;
+}
+
+.checkout-form-container, .order-summary {
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: var(--radius);
+    border: 1px solid var(--border-color);
+}
+
+.checkout-form-container h1, .order-summary h2 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+}
+
+.checkout-form-container .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.checkout-form-container label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+}
+
+.checkout-form-container input {
+    width: 100%;
+    padding: 12px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    color: var(--text-color);
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.checkout-form-container input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.whatsapp-checkout-btn {
+    /* 1. Reset all previous styles */
+    all: unset; 
+    
+    /* 2. Basic Layout */
+    display: flex !important;
+    justify-content: center !important; /* හරහට හරියටම මැදට */
+    align-items: center !important;     /* උඩ යට හරියටම මැදට */
+    width: 100% !important;
+    box-sizing: border-box !important;
+    height: 55px !important;
+    margin-top: 20px !important;
+    cursor: pointer !important;
+    
+    /* 3. Colors & Branding */
+    background-color: #25D366 !important;
+    color: #ffffff !important;
+    border-radius: 4px !important; /* Sharp corners */
+    
+    /* 4. Typography - No Caps & Centered */
+    font-family: var(--font-family), sans-serif !important;
+    font-size: 1.1rem !important;
+    font-weight: 700 !important;
+    text-align: center !important;
+    text-transform: none !important;
+    white-space: nowrap !important; /* එක පේළියට තබා ගැනීමට */
+    
+    /* 5. Clean Padding */
+    padding: 0 !important; /* කිසිම padding එකක් අවශ්‍ය නැත flex center කරන නිසා */
+    
+    transition: background 0.3s ease !important;
+}
+
+.whatsapp-checkout-btn:hover {
+    background-color: #1eb954 !important;
+}
+
+.summary-card {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.summary-image {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: var(--radius);
+}
+
+.summary-details h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+}
+
+.summary-price {
+    margin: 0;
+    font-weight: bold;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+    .checkout-layout {
+        grid-template-columns: 1fr;
+    }
+    .order-summary {
+        order: -1; /* Show summary first on mobile */
+    }
+}
+/* --- Final Mobile Centering Fix --- */
+@media (max-width: 768px) {
+    /* 1. Body එකේ horizontal scroll එක නැති කරන්න */
+    body, html {
+        overflow-x: hidden;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* 2. මුළු Layout එකම මැදට ගන්න */
+    .checkout-layout {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* මැදට align කරයි */
+        justify-content: center;
+        width: 100% !important;
+        margin: 0 auto !important;
+        padding: 10px !important;
+        box-sizing: border-box;
+    }
+
+    /* 3. Containers වල width එක හරියටම set කරන්න */
+    .checkout-form-container, 
+    .order-summary {
+        width: 95% !important; /* Screen එකේ දෙපැත්තෙන් පොඩි ඉඩක් තබයි */
+        max-width: 100% !important;
+        margin: 10px 0 !important;
+        padding: 20px !important; /* Padding අඩු කරන්න */
+        box-sizing: border-box !important; /* Padding නිසා width එක වැඩි වීම නවත්වයි */
+        float: none !important;
+    }
+
+    /* 4. Input fields screen එකට වඩා පළල වීම නවත්වන්න */
+    input, textarea, .summary-card {
+        width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* 5. Header එක හරියටම මැදට ගන්න */
+    .header-container {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 15px;
+        box-sizing: border-box;
+    }
+}

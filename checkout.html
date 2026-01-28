@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Phoenix Girl</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+</head>
+<body>
+    <header-component></header-component>
+
+    <main class="container" id="checkout-page">
+        <div class="checkout-layout">
+            <div class="checkout-form-container">
+                <h1>Checkout</h1>
+                <form id="checkout-form">
+                    <div class="form-group">
+                        <label for="customer-name">Full Name</label>
+                        <input type="text" id="customer-name" required placeholder="Enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="customer-email">Email Address</label>
+                        <input type="email" id="customer-email" required placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="customer-whatsapp">WhatsApp Number</label>
+                        <input type="tel" id="customer-whatsapp" required placeholder="e.g., +94 77 123 4567">
+                    </div>
+                    <button type="submit" class="cta-button whatsapp-checkout-btn">
+                        <span class="material-icons-outlined">whatsapp</span> Buy on WhatsApp
+                    </button>
+                </form>
+            </div>
+            <div class="order-summary">
+                <h2>Order Summary</h2>
+                <div id="checkout-product-summary">
+                    <div class="loading-spinner"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-brand">
+                        <h3>Phoenix Girl</h3>
+                        <p>Creating immersive mods and digital experiences. Join our community to stay updated with the latest releases and exclusive content.</p>
+                    </div>
+                    <div class="footer-links">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="products.html">Mods</a></li>
+                            <li><a href="about.html">About Us</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-links">
+                        <h4>Community</h4>
+                        <ul>
+                            <li><a href="https://discord.com/invite/NPpsXz5RzR" id="footer-discord-link" target="_blank">Discord</a></li>
+                            <li><a href="https://www.youtube.com/@GenuraCreations-m3e" id="footer-youtube-link" target="_blank">YouTube</a></li>
+                            <li><a href="https://api.whatsapp.com/send/?phone=%2B94772702422&text&type=phone_number&app_absent=0">Whatsapp</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>&copy; 2024 Phoenix Girl Mods Store. Based in Sri Lanka.</p>
+                </div>
+            </div>
+        </footer>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+
+    <script src="js/firebase-config.js"></script>
+    <script src="js/header-component.js"></script>
+    <script src="js/user-auth.js"></script>
+    <script src="js/checkout.js"></script>
+</body>
+</html>

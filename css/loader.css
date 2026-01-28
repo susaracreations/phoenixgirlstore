@@ -1,8 +1,8 @@
 /* css/loader.css */
 
 :root {
-    --loader-primary: #ff4d4d;
-    --loader-bg: #121212;
+    --loader-red: #e63939;
+    --loader-bg: #0a0a0a;
 }
 
 .loader-wrapper {
@@ -16,7 +16,7 @@
     justify-content: center;
     align-items: center;
     z-index: 10000;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .loader-wrapper.fade-out {
@@ -29,39 +29,36 @@
     flex-direction: column;
     align-items: center;
     gap: 1.5rem;
-    text-align: center;
 }
 
+/* --- The Modern Spinner --- */
 .spinner {
-    width: 48px;
-    height: 48px;
-    border: 3px solid rgba(255, 255, 255, 0.1);
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(255, 255, 255, 0.05); /* Very subtle base ring */
     border-radius: 50%;
-    border-top-color: var(--loader-primary);
-    animation: spin 1s ease-in-out infinite;
+    border-top: 3px solid var(--loader-red); /* Sharp Red top */
+    border-right: 3px solid transparent; /* Elegant gap */
+    animation: premium-spin 0.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
 .loader-text {
     color: #ffffff;
-    font-family: 'SF Pro Display', sans-serif;
-    font-size: 1rem;
-    letter-spacing: 3px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
     font-weight: 500;
-    opacity: 0.8;
-    text-transform: uppercase;
+    opacity: 0.7;
+    text-transform: none; /* No more full capitals */
 }
 
-/* Animations */
-@keyframes spin {
+/* High-end smooth animation */
+@keyframes premium-spin {
+    from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
 }
 
-/* Main Content Fade-in */
-#main-content.fade-in {
-    animation: contentFadeIn 1s ease-in forwards;
-}
-
-@keyframes contentFadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+/* Content Fade fix (oya kiwwa nisa header/content animations ain kala) */
+#main-content {
+    opacity: 1;
 }
