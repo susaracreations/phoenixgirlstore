@@ -21,7 +21,7 @@ class HeaderComponent extends HTMLElement {
                             <a href="/about.html">About</a>
                         </nav>
                         
-                        <div class="user-auth">
+                        <div class="user-auth" id="user-auth-section">
                              <a href="/login.html" class="login-btn-shared">Login</a>
                         </div>
 
