@@ -6,66 +6,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - Phoenix Girl</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/loader.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 </head>
 <body>
 
-    <header-component></header-component>
-
-    <main class="container">
-        <div class="page-hero">
-            <h1>About Phoenix Girl</h1>
-            <p>Crafting high-quality digital experiences from the heart of Sri Lanka.</p>
+    <!-- Professional Loader -->
+    <div class="loader-wrapper" id="loader-wrapper">
+        <div class="loader-content">
+            <div class="spinner"></div>
+            <div class="loader-text">PHOENIX GIRL</div>
         </div>
+    </div>
 
-        <div class="about-content">
-            <div class="about-section">
-                <h2>Our Mission</h2>
-                <p>At Phoenix Girl, our mission is to push the boundaries of digital creativity. We are dedicated to developing high-quality, immersive, and innovative mods that enhance gaming experiences. We believe in the power of community and strive to create content that inspires and excites players around the world.</p>
+    <!-- Main Page Content (Initially Hidden) -->
+    <div id="main-content" class="hidden">
+        <header-component></header-component>
+
+        <main class="container">
+            <div class="page-hero">
+                <h1>About Phoenix Girl</h1>
+                <p>Crafting high-quality digital experiences from the heart of Sri Lanka.</p>
             </div>
 
-            <div class="about-section">
-                <h2>Our Story</h2>
-                <p>Founded in Sri Lanka, Phoenix Girl started as a passion project by a small group of dedicated developers and artists. What began as a hobby quickly grew into a mission to deliver professional-grade mods to the gaming community. We combine our technical expertise with a deep love for gaming to create unique and memorable content.</p>
-            </div>
-
-            <section class="team-section">
-                <h2 class="section-title">Meet the Team</h2>
-                <div class="team-container">
-                    <div class="team-card">
-                        <div class="image-wrapper">
-                            <img src="https://i.ibb.co/XkjYxJFJ/gaming-naviya-logo.png" alt="Naviya">
-                        </div>
-                        <h3>Naviya</h3>
-                        <p>Co-Founder</p>
-                    </div>
-
-                    <div class="team-card">
-                        <div class="image-wrapper">
-                            <!-- Placeholder image, replace with actual image URL -->
-                            <img src="https://media.istockphoto.com/id/1196083861/vector/simple-man-head-icon-set.jpg?s=612x612&w=0&k=20&c=a8fwdX6UKUVCOedN_p0pPszu8B4f6sjarDmUGHngvdM=" alt="Team Member">
-                        </div>
-                        <h3>Genura</h3>
-                        <p>Founder</p>
-                    </div>
-
-                    <div class="team-card">
-                        <div class="image-wrapper">
-                            <!-- Placeholder image, replace with actual image URL -->
-                            <img src="https://i.ibb.co/Vp3HmSkL/cff6857e1c6c.png" alt="Team Member">
-                        </div>
-                        <h3>Susara</h3>
-                        <p>Web Designer</p>
-                    </div>
+            <div class="about-content">
+                <div class="about-section">
+                    <h2>Our Mission</h2>
+                    <p>At Phoenix Girl, our mission is to push the boundaries of digital creativity. We are dedicated to developing high-quality, immersive, and innovative mods that enhance gaming experiences. We believe in the power of community and strive to create content that inspires and excites players around the world.</p>
                 </div>
-            </section>
-        </div>
-    </main>
+
+                <div class="about-section">
+                    <h2>Our Story</h2>
+                    <p>Founded in Sri Lanka, Phoenix Girl started as a passion project by a small group of dedicated developers and artists. What began as a hobby quickly grew into a mission to deliver professional-grade mods to the gaming community. We combine our technical expertise with a deep love for gaming to create unique and memorable content.</p>
+                </div>
+
+                <section class="team-section">
+                    <h2 class="section-title">Meet the Team</h2>
+                    <div class="team-container">
+                        <div class="team-card">
+                            <div class="image-wrapper">
+                                <img src="https://i.ibb.co/spZPJTjB/f6b9ec0c8464.png" alt="Naviya">
+                            </div>
+                            <h3>Naviya</h3>
+                            <p>Co-Founder</p>
+                        </div>
+
+                        <div class="team-card">
+                            <div class="image-wrapper">
+                                <!-- Placeholder image, replace with actual image URL -->
+                                <img src="https://i.ibb.co/7dXZ2Xth/a236e2c02fe3.jpg" alt="Team Member">
+                            </div>
+                            <h3>Genura</h3>
+                            <p>Founder</p>
+                        </div>
+
+                        <div class="team-card">
+                            <div class="image-wrapper">
+                                <!-- Placeholder image, replace with actual image URL -->
+                                <img src="https://i.ibb.co/pBF5kzy0/2b83b0261a24.png" alt="Team Member">
+                            </div>
+                            <h3>Susara</h3>
+                            <p>Web Designer</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
 
         <footer-component></footer-component>
+    </div>
 
     <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
 
+    <script src="js/loader.js"></script>
     <script src="js/firebase-config.js"></script>
     <script src="js/header-component.js"></script>
     <script src="js/favicon-loader.js"></script>

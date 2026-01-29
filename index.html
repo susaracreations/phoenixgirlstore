@@ -8,9 +8,12 @@
     <link href="https://fonts.cdnfonts.com/css/sf-pro-display" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/loader.css">
+    <link rel="stylesheet" href="css/ads.css">
     <link rel="preconnect" href="https://firestore.googleapis.com">
     <link rel="preconnect" href="https://www.googleapis.com">
     <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+         <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://i.ibb.co/vxqNbZVL/b7dd6af60d09.png">
 </head>
 <body>
 
@@ -216,79 +219,42 @@
 <!--|| Advertisement Section Start ||-->
 <!--=================================-->
 
-        <style>
-        /* Container visibility logic */
-        .mobile-only-ad {
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* Centers the ad and the button */
-            margin: 3rem 0;
-        }
-
-        /* The Button Styling */
-        .click-here-btn {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 12px 30px;
-            background-color: #ffe600; /* High-contrast yellow*/
-            color: #000000 !important;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            font-family: sans-serif;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        /* Hide everything when the screen is wider than 767px */
-        @media only screen and (min-width: 768px) {
-            .mobile-only-ad {
-            display: none;
-            }
-        }
-        </style>
-
-        <div class="mobile-only-ad">
-        <script>
-            atOptions = {
-            'key' : 'a5170ec14c6ae92a836c7fe1c619082d',
-            'format' : 'iframe',
-            'height' : 250,
-            'width' : 300,
-            'params' : {}
-            };
-        </script>
-        <script src="https://needyvarietysaucer.com/a5170ec14c6ae92a836c7fe1c619082d/invoke.js"></script>
-
-        <a class="click-here-btn">Click Here For Support Us ⬆⬆</a>
-        </div>
-                    <style> /* Desktop-only styles Advertisement */
-                    /* By default, hide the container on small screens */
-                    .desktop-only {
-                        display: none;
-                    }
-
-                    /* Show the container only when the screen is wider than 1024px (Standard Desktop) */
-                    @media only screen and (min-width: 1024px) {
-                        .desktop-only {
-                        display: block;
-                        }
-                    }
-                    </style>
-
-                    <div class="desktop-only" style="text-align: center; margin: 4rem 0;">
-                    <script>
-                        atOptions = {
-                        'key' : '6cd9fcb8e63e86f9de7ce927f60ba626',
-                        'format' : 'iframe',
-                        'height' : 90,
-                        'width' : 728,
-                        'params' : {}
-                        };
-                    </script>
-                    <script src="https://prefecturecriesurged.com/6cd9fcb8e63e86f9de7ce927f60ba626/invoke.js"></script>
-                    <br>
-                    <a class="click-here-btn">Click Here For Support Us ⬆⬆</a>
+        <section class="ad-section">
+            <div class="ad-container">
+                <div class="ad-header">
+                    <h3>Support Our Work</h3>
+                    <p>Advertisements help us keep the mods free and the community running.</p>
+                </div>
+                <div class="ad-content">
+                    <!-- Desktop Ad (728x90) -->
+                    <div class="ad-slot ad-desktop">
+                        <script>
+                            atOptions = {
+                                'key' : '6cd9fcb8e63e86f9de7ce927f60ba626',
+                                'format' : 'iframe',
+                                'height' : 90,
+                                'width' : 728,
+                                'params' : {}
+                            };
+                        </script>
+                        <script src="https://prefecturecriesurged.com/6cd9fcb8e63e86f9de7ce927f60ba626/invoke.js"></script>
                     </div>
+                    <!-- Mobile Ad (300x250) -->
+                    <div class="ad-slot ad-mobile">
+                        <script>
+                            atOptions = {
+                                'key' : 'a5170ec14c6ae92a836c7fe1c619082d',
+                                'format' : 'iframe',
+                                'height' : 250,
+                                'width' : 300,
+                                'params' : {}
+                            };
+                        </script>
+                        <script src="https://needyvarietysaucer.com/a5170ec14c6ae92a836c7fe1c619082d/invoke.js"></script>
+                    </div>
+                </div>
+            </div>
+        </section>
 <!--===============================-->
 <!--|| Advertisement Section End ||-->
 <!--===============================-->

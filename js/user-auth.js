@@ -10,31 +10,33 @@ function updateUserNav() {
 
     auth.onAuthStateChanged(user => {
         if (user) {
-            // User is signed in
-            userAuthSection.innerHTML = `
-                <div class="user-profile">
-                    <svg class="user-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"></path></svg>
-                </div>
-                <a href="#" id="logout-link" class="logout-text-link">Logout</a>
-            `;
-            const logoutLink = document.getElementById('logout-link');
-            if (logoutLink) {
-                logoutLink.addEventListener('click', (e) => {
+            // User is signed in, update UI and localStorage flag
+            localStorage.setItem('isLoggedIn', 'true');
+            userAuthSection.innerHTML = `<a href="#" id="logout-btn" class="login-btn-shared" style="background: #333;">Logout</a>`;
+            
+            const logoutBtn = document.getElementById('logout-btn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', (e) => {
                     e.preventDefault();
                     auth.signOut().then(() => {
-                        // Redirect to home page after logout to refresh state
-                        window.location.href = '/';
+                        // onAuthStateChanged will handle the UI update.
+                        // We just need to redirect.
+                        window.location.href = '/'; 
                     }).catch(error => {
                         console.error("Logout Error:", error);
                     });
                 });
             }
         } else {
-            // User is signed out
+            // User is signed out, update UI and remove localStorage flag
+            localStorage.removeItem('isLoggedIn');
             userAuthSection.innerHTML = '<a href="/login.html" class="login-btn-shared">Login</a>';
         }
     });
 }
+
+// Make this function globally available so header-component can call it
+window.updateUserNav = updateUserNav;
 
 /**
  * Initializes the logic for the login/signup page.
@@ -158,9 +160,10 @@ function initializeAuthPage() {
 
 // Check which page we are on and run the appropriate function
 document.addEventListener('DOMContentLoaded', () => {
+    // Always update the nav to ensure header consistency across all pages
+    updateUserNav();
+
     if (document.body.classList.contains('auth-page')) {
         initializeAuthPage();
-    } else {
-        updateUserNav();
     }
 });

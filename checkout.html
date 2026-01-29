@@ -5,43 +5,55 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout - Phoenix Girl</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/loader.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 </head>
 <body>
-    <header-component></header-component>
+    <!-- Professional Loader -->
+    <div class="loader-wrapper" id="loader-wrapper">
+        <div class="loader-content">
+            <div class="spinner"></div>
+            <div class="loader-text">PHOENIX GIRL</div>
+        </div>
+    </div>
 
-    <main class="container" id="checkout-page">
-        <div class="checkout-layout">
-            <div class="checkout-form-container">
-                <h1>Checkout</h1>
-                <form id="checkout-form">
-                    <div class="form-group">
-                        <label for="customer-name">Full Name</label>
-                        <input type="text" id="customer-name" required placeholder="Enter your name">
+    <!-- Main Page Content (Initially Hidden) -->
+    <div id="main-content" class="hidden">
+        <header-component></header-component>
+
+        <main class="container" id="checkout-page">
+            <div class="checkout-layout">
+                <div class="checkout-form-container">
+                    <h1>Checkout</h1>
+                    <form id="checkout-form">
+                        <div class="form-group">
+                            <label for="customer-name">Full Name</label>
+                            <input type="text" id="customer-name" required placeholder="Enter your name">
+                        </div>
+                        <div class="form-group">
+                            <label for="customer-email">Email Address</label>
+                            <input type="email" id="customer-email" required placeholder="Enter your email">
+                        </div>
+                        <div class="form-group">
+                            <label for="customer-whatsapp">WhatsApp Number</label>
+                            <input type="tel" id="customer-whatsapp" required placeholder="e.g., +94 77 123 4567">
+                        </div>
+                        <button type="submit" class="cta-button whatsapp-checkout-btn">
+                            <span class="material-icons-outlined">whatsapp</span> Buy on WhatsApp
+                        </button>
+                    </form>
+                </div>
+                <div class="order-summary">
+                    <h2>Order Summary</h2>
+                    <div id="checkout-product-summary">
+                        <div class="loading-spinner"></div>
                     </div>
-                    <div class="form-group">
-                        <label for="customer-email">Email Address</label>
-                        <input type="email" id="customer-email" required placeholder="Enter your email">
-                    </div>
-                    <div class="form-group">
-                        <label for="customer-whatsapp">WhatsApp Number</label>
-                        <input type="tel" id="customer-whatsapp" required placeholder="e.g., +94 77 123 4567">
-                    </div>
-                    <button type="submit" class="cta-button whatsapp-checkout-btn">
-                        <span class="material-icons-outlined">whatsapp</span> Buy on WhatsApp
-                    </button>
-                </form>
-            </div>
-            <div class="order-summary">
-                <h2>Order Summary</h2>
-                <div id="checkout-product-summary">
-                    <div class="loading-spinner"></div>
                 </div>
             </div>
-        </div>
-    </main>
+        </main>
 
-    <footer-component></footer-component>
+        <footer-component></footer-component>
+    </div>
 
     <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
@@ -49,6 +61,7 @@
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
 
     <script src="js/firebase-config.js"></script>
+    <script src="js/loader.js"></script>
     <script src="js/header-component.js"></script>
     <script src="js/user-auth.js"></script>
     <script src="js/checkout.js"></script>

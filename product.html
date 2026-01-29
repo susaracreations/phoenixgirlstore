@@ -6,24 +6,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product Details - Phoenix Girl</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/loader.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 </head>
 <body>
-    <header-component></header-component>
+    <!-- Professional Loader -->
+    <div class="loader-wrapper" id="loader-wrapper">
+        <div class="loader-content">
+            <div class="spinner"></div>
+            <div class="loader-text">PHOENIX GIRL</div>
+        </div>
+    </div>
 
-    <main id="product-detail-page" class="container">
-        <div class="loading-spinner"></div>
-        <!-- Product details will be injected here by product.js -->
-    </main>
+    <!-- Main Page Content (Initially Hidden) -->
+    <div id="main-content" class="hidden">
+        <header-component></header-component>
 
-    <footer-component></footer-component>
+        <main id="product-detail-page" class="container">
+            <div class="loading-spinner"></div>
+            <!-- Product details will be injected here by product.js -->
+        </main>
 
+        <footer-component></footer-component>
+    </div>
 
     <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
     <!-- Your Scripts -->
+    <script src="js/loader.js"></script>
     <script src="js/firebase-config.js"></script>
     <script src="js/header-component.js"></script>
     <script src="js/favicon-loader.js"></script>

@@ -11,7 +11,7 @@
     --card-bg: #1e1e1e;
     --border-color: #3a4048;
     --font-family: 'SF Pro Display', sans-serif;
-    --radius: 8px;
+    --radius: 10px;
     --shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
@@ -631,6 +631,10 @@ body.auth-page main {
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease-out;
 }
 
 /* Form transition animations */

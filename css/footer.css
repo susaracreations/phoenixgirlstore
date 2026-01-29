@@ -1,5 +1,5 @@
 :root {
-    --phoenix-gradient: linear-gradient(135deg, #e53935 0%, #800000 100%);
+    --phoenix-gradient: linear-gradient(135deg, #e53935 0%, #410000 100%);
     --glass-bg: rgba(14, 14, 14, 0.85);
     --glass-border: rgba(255, 255, 255, 0.08);
     --text-bright: #e53935;
@@ -12,7 +12,7 @@
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
     border-top: 1px solid var(--glass-border);
-    padding: 100px 1.5rem 40px;
+    padding: 50px 1.5rem 25px; /* Significantly reduced vertical padding */
     margin-top: 6rem;
     color: var(--text-muted);
     overflow: hidden;
@@ -47,13 +47,13 @@
     margin: 0 auto;
     display: grid;
     grid-template-columns: 2fr 1fr 1fr;
-    gap: 60px;
+    gap: 40px; /* Tighter column gap */
 }
 
 .footer-brand h3 {
-    font-size: 2.2rem;
+    font-size: 1.6rem; /* Smaller, sleeker brand title */
     font-weight: 900;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     letter-spacing: -1.5px;
     background: var(--phoenix-gradient);
     background-clip: text;
@@ -63,15 +63,15 @@
 }
 
 .footer-brand p {
-    line-height: 1.8;
+    line-height: 1.6;
     max-width: 400px;
-    font-size: 1rem;
+    font-size: 0.9rem; /* Smaller description text */
 }
 
 .footer-links h4 {
     color: var(--text-bright);
-    font-size: 1.1rem;
-    margin-bottom: 30px;
+    font-size: 0.95rem; /* Smaller section headers */
+    margin-bottom: 15px;
     text-transform: uppercase;
     letter-spacing: 2px;
 }
@@ -82,13 +82,14 @@
 }
 
 .footer-links li {
-    margin-bottom: 15px;
+    margin-bottom: 8px; /* Tighter list spacing */
 }
 
 .footer-links a {
     color: var(--text-muted);
     text-decoration: none;
     font-weight: 500;
+    font-size: 0.9rem; /* Smaller link text */
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     align-items: center;
@@ -115,8 +116,8 @@
 
 .footer-bottom {
     max-width: 1200px;
-    margin: 80px auto 0;
-    padding-top: 30px;
+    margin: 30px auto 0; /* Reduced top margin */
+    padding-top: 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     display: flex;
     justify-content: space-between;

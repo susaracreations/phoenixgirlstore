@@ -1,6 +1,11 @@
-/* css/header.css */
+:root {
+    --accent: #e63939;
+    --accent-hover: #ff4d4d;
+    --glass: rgba(15, 15, 15, 0.75);
+    --border: rgba(255, 255, 255, 0.08);
+}
 
-/* Horizontal scroll fix */
+/* Global Reset for Header */
 html, body {
     max-width: 100%;
     overflow-x: hidden;
@@ -11,19 +16,16 @@ header {
     top: 0;
     z-index: 1000;
     width: 100%;
-    /* Modern Ultra-Glass Effect */
-    background: rgba(27, 27, 27, 0.75);
-    backdrop-filter: blur(12px) saturate(180%);
-    -webkit-backdrop-filter: blur(12px) saturate(180%);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-    /* Load weddi ena animations ain kala */
-    transition: background 0.3s ease, padding 0.3s ease; 
+    background: var(--glass);
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border-bottom: 1px solid var(--border);
 }
 
 .header-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0.7rem 1.5rem; /* Purity and spacing */
+    padding: 0.8rem 1.5rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -31,16 +33,18 @@ header {
 
 .logo {
     font-size: 1.4rem;
-    font-weight: 700;
+    font-weight: 800;
     text-decoration: none;
     color: #ffffff;
-    text-transform: none; /* No Caps */
     letter-spacing: -0.5px;
+    transition: opacity 0.2s;
 }
 
 .logo span {
-    color: #e63939; /* Plain Red #e63939 */
+    color: var(--accent);
 }
+
+.logo:hover { opacity: 0.9; }
 
 .header-right {
     display: flex;
@@ -55,38 +59,37 @@ header {
 
 .main-nav a {
     text-decoration: none;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.5);
     font-weight: 500;
     font-size: 0.9rem;
-    text-transform: none;
-    transition: color 0.2s ease;
+    transition: all 0.3s ease;
 }
 
 .main-nav a:hover {
     color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
 }
 
-/* --- Professional Login Button (#e63939) --- */
+/* Professional Modern Button */
 .login-btn-shared {
-    background-color: #e63939;
+    background-color: var(--accent);
     color: white;
-    padding: 7px 18px;
+    padding: 8px 20px;
     text-decoration: none;
     font-weight: 600;
     font-size: 0.85rem;
-    border-radius: 4px; /* Sharp corners */
+    border-radius: 6px;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.2s ease;
-    text-transform: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .login-btn-shared:hover {
-    background-color: #c42f2f;
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(230, 57, 57, 0.3);
+    background-color: var(--accent-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(230, 57, 57, 0.4);
 }
 
-/* Mobile Menu Toggle */
+/* Advanced Mobile Toggle */
 .mobile-menu-toggle {
     display: none;
     background: none;
@@ -98,16 +101,14 @@ header {
 
 .bar {
     width: 22px;
-    height: 1.5px; /* Thinner bars for modern look */
+    height: 1.5px;
     background-color: white;
     margin: 5px 0;
-    transition: 0.3s;
+    transition: 0.4s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 
-/* --- Responsive Layout --- */
+/* --- Responsive & Mobile Drawer --- */
 @media (max-width: 768px) {
-    .header-container { padding: 0.6rem 1rem; }
-    
     .mobile-menu-toggle { display: block; }
 
     .main-nav {
@@ -122,12 +123,12 @@ header {
         align-items: center;
         gap: 2.5rem;
         transform: translateX(100%);
-        transition: transform 0.3s ease-in-out; /* Simple slide, no fade */
+        transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1);
     }
 
     .main-nav.active {
         transform: translateX(0);
     }
 
-    .main-nav a { font-size: 1.3rem; }
+    .main-nav a { font-size: 1.5rem; color: #fff; }
 }
