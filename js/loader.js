@@ -12,5 +12,5 @@ document.addEventListener('DOMContentLoaded', () => {
         loaderWrapper.classList.add('fade-out');
         mainContent.classList.remove('hidden');
         mainContent.classList.add('fade-in');
-    }, 1000); // 1 second delay
+    }, 500); // 1 second delay
 });

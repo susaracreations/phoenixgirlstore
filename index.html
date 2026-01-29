@@ -14,18 +14,46 @@
 </head>
 <body>
 
-    <script>
-        // We pre-filled your app ID in the widget URL: 'https://widget.web2chat.ai/widget/BGQ4XJaYM'
-        !function(){var t=window;if("function"==typeof t.Chat);else{var e=document,a=function(){a.c(arguments)};a.q=[],a.c=function(t){a.q.push(t)},t.Chat=a;var n=function(){var t=e.createElement("script");t.type="text/javascript",t.async=!0,t.src="https://widget.web2chat.ai/widget/BGQ4XJaYM";var a=e.getElementsByTagName("script")[0];a.parentNode.insertBefore(t,a)};"complete"===document.readyState?n():t.attachEvent?t.attachEvent("onload",n):t.addEventListener("load",n,!1)}}();
-      </script>
+    <!-- Professional Loader -->
+    <div class="loader-wrapper" id="loader-wrapper">
+        <div class="loader-content">
+            <div class="spinner"></div>
+            <div class="loader-text">PHOENIX GIRL</div>
+        </div>
+    </div>
 
-      <script>        
-        window.Chat("boot", {
-          app_id: "BGQ4XJaYM",
-        });
-    </script>
+    <!-- Main Page Content (Initially Hidden) -->
+    <div id="main-content" class="hidden">
+        <header-component></header-component>
 
-    <script> // Anti Adblocker
+                <script>
+                // Check if the device is NOT mobile (Screen width greater than 767px)
+                if (window.innerWidth > 767) {
+                    !function(){
+                    var t=window;
+                    if("function"==typeof t.Chat);
+                    else {
+                        var e=document,
+                        a=function(){a.c(arguments)};
+                        a.q=[], a.c=function(t){a.q.push(t)}, t.Chat=a;
+                        var n=function(){
+                        var t=e.createElement("script");
+                        t.type="text/javascript", t.async=!0, 
+                        t.src="https://widget.web2chat.ai/widget/BGQ4XJaYM";
+                        var a=e.getElementsByTagName("script")[0];
+                        a.parentNode.insertBefore(t,a)
+                        };
+                        "complete"===document.readyState?n():t.addEventListener("load",n,!1)
+                    }
+                    }();
+
+                    window.Chat("boot", {
+                    app_id: "BGQ4XJaYM",
+                    });
+                }
+                </script>
+
+            <script> // Anti Adblocker
   (function () {
     function detectAdBlock() {
         return new Promise((resolve) => {
@@ -90,19 +118,6 @@
     });
     })();
     </script>
-
-    <!-- Professional Loader -->
-    <div class="loader-wrapper" id="loader-wrapper">
-        <div class="loader-content">
-            <div class="spinner"></div>
-            <div class="loader-text">PHOENIX GIRL</div>
-        </div>
-    </div>
-
-    <!-- Main Page Content (Initially Hidden) -->
-    <div id="main-content" class="hidden">
-        <header-component></header-component>
-
 
         <section class="hero">
             <h2 id="main-hero-title-display">Phoenix Girl Mods Store</h2>
@@ -197,7 +212,9 @@
         </section>
 
 
+<!--=================================-->
 <!--|| Advertisement Section Start ||-->
+<!--=================================-->
 
         <style>
         /* Container visibility logic */
@@ -272,8 +289,9 @@
                     <br>
                     <a class="click-here-btn">Click Here For Support Us ⬆⬆</a>
                     </div>
-
+<!--===============================-->
 <!--|| Advertisement Section End ||-->
+<!--===============================-->
 
         <footer-component></footer-component>
 
