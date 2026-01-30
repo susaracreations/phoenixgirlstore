@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - Phoenix Girl</title>
+    <link href="https://fonts.cdnfonts.com/css/sf-pro-display" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/loader.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -20,7 +21,7 @@
     </div>
 
     <!-- Main Page Content (Initially Hidden) -->
-    <div id="main-content" class="hidden">
+    <div id="main-content">
         <header-component></header-component>
 
         <main class="container">
@@ -45,7 +46,7 @@
                     <div class="team-container">
                         <div class="team-card">
                             <div class="image-wrapper">
-                                <img src="https://i.ibb.co/spZPJTjB/f6b9ec0c8464.png" alt="Naviya">
+                                <img src="https://i.ibb.co/spZPJTjB/f6b9ec0c8464.png" alt="Naviya" loading="lazy">
                             </div>
                             <h3>Naviya</h3>
                             <p>Co-Founder</p>
@@ -54,7 +55,7 @@
                         <div class="team-card">
                             <div class="image-wrapper">
                                 <!-- Placeholder image, replace with actual image URL -->
-                                <img src="https://i.ibb.co/7dXZ2Xth/a236e2c02fe3.jpg" alt="Team Member">
+                                <img src="https://i.ibb.co/7dXZ2Xth/a236e2c02fe3.jpg" alt="Team Member" loading="lazy">
                             </div>
                             <h3>Genura</h3>
                             <p>Founder</p>
@@ -63,7 +64,7 @@
                         <div class="team-card">
                             <div class="image-wrapper">
                                 <!-- Placeholder image, replace with actual image URL -->
-                                <img src="https://i.ibb.co/pBF5kzy0/2b83b0261a24.png" alt="Team Member">
+                                <img src="https://i.ibb.co/pBF5kzy0/2b83b0261a24.png" alt="Team Member" loading="lazy">
                             </div>
                             <h3>Susara</h3>
                             <p>Web Designer</p>
@@ -77,17 +78,17 @@
     </div>
 
     <!-- Firebase SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js" defer></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-storage-compat.js" defer></script>
 
-    <script src="js/loader.js"></script>
-    <script src="js/firebase-config.js"></script>
-    <script src="js/header-component.js"></script>
-    <script src="js/favicon-loader.js"></script>
-    <script src="js/user-auth.js"></script>
-    <script src="js/nav.js"></script>
+    <script src="js/loader.js" defer></script>
+    <script src="js/firebase-config.js" defer></script>
+    <script src="js/header-component.js" defer></script>
+    <script src="js/favicon-loader.js" defer></script>
+    <script src="js/user-auth.js" defer></script>
+    <script src="js/nav.js" defer></script>
     <script src="/js/footer-component.js" defer></script>
 </body>
 </html>

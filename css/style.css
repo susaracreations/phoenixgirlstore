@@ -1,5 +1,4 @@
 /* css/style.css - Public-facing styles */
-@import url('https://fonts.cdnfonts.com/css/sf-pro-display');
 
 :root {
     --primary-color: #e53935; /* Red */
@@ -254,10 +253,6 @@ main {
 
 .paid-tag {
     background-color: #2196F3; /* Blue */
-}
-
-.price-free {
-    color: #4caf50; /* Green */
 }
 
 /* User Auth Header Section */
@@ -611,14 +606,6 @@ body.auth-page main {
     transition: background-color 0.2s;
 }
 
-.btn.whatsapp-btn {
-    background-color: #25D366; /* WhatsApp Green */
-}
-
-.btn.whatsapp-btn:hover {
-    background-color: #128C7E; /* Darker WhatsApp Green */
-}
-
 .btn:hover {
     background-color: #c62828; /* Darker Red */
 }
@@ -665,11 +652,6 @@ body.auth-page main {
 @keyframes fadeInDown {
     from { opacity: 0; transform: translateY(-20px); }
     to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes heroZoom {
-    from { background-size: 100% auto; }
-    to { background-size: 110% auto; }
 }
 
 @keyframes fadeInUp {
