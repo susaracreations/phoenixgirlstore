@@ -14,15 +14,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Fetch the specific product from Firestore
     const docRef = db.collection('products').doc(productId);
 
-    // Fetch product and settings data from Firestore
-    const productPromise = docRef.get();
-    const settingsPromise = db.collection('site_settings').doc('homepage').get();
-
-    Promise.all([productPromise, settingsPromise]).then(([doc, settingsDoc]) => {
+    // Fetch only product data (removed unnecessary settings fetch to improve stability)
+    docRef.get().then((doc) => {
         if (doc.exists) {
             const product = doc.data();
-            const settings = settingsDoc.exists ? settingsDoc.data() : {};
-            displayProduct(product, settings);
+            // We don't need settings for display, passing empty object just in case
+            displayProduct(product, {});
             document.title = `${product.name} - Phoenix Girl`; // Update page title
         } else {
             productDetailPage.innerHTML = '<p class="error-message">Sorry, this product could not be found.</p>';

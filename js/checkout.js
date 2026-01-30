@@ -14,7 +14,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Fetch product and settings
     const productPromise = db.collection('products').doc(productId).get();
-    const settingsPromise = db.collection('site_settings').doc('homepage').get();
+    // Make settings fetch robust: if it fails, return a dummy object so the page still loads
+    const settingsPromise = db.collection('site_settings').doc('homepage').get().catch(err => {
+        console.warn("Settings fetch failed, using defaults", err);
+        return { exists: false };
+    });
 
     Promise.all([productPromise, settingsPromise]).then(([productDoc, settingsDoc]) => {
         if (!productDoc.exists) {
