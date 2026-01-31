@@ -1,6 +1,6 @@
 :root {
     --phoenix-gradient: linear-gradient(135deg, #e53935 0%, #410000 100%);
-    --glass-bg: rgba(14, 14, 14, 0.85);
+    --glass-bg: rgba(3, 3, 3, 0.85);
     --glass-border: rgba(255, 255, 255, 0.08);
     --text-bright: #e53935;
     --text-muted: #9ca3af;
@@ -98,7 +98,6 @@
 /* Modern Hover: Slide & Glow */
 .footer-links a:hover {
     color: var(--text-bright);
-    transform: translateX(10px);
 }
 
 .footer-links a::before {
@@ -110,7 +109,6 @@
 }
 
 .footer-links a:hover::before {
-    margin-right: 10px;
     opacity: 1;
 }
 

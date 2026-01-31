@@ -149,7 +149,7 @@ function initializeAuthPage() {
                     return auth.signInWithPopup(provider);
                 })
                 .then((result) => {
-                    window.location.href = 'home.html';
+                    window.location.href = 'index.html';
                 })
                 .catch((error) => {
                     authError.textContent = error.message;

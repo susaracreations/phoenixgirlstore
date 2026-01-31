@@ -2,6 +2,9 @@
 
 // Your web app's Firebase configuration
 // IMPORTANT: Replace with your actual Firebase config object
+// NOTE: It is standard practice for this configuration to be public in client-side apps.
+// To secure your app, do NOT hide this key. Instead, restrict the API key in Google Cloud Console
+// to only accept requests from your specific domains (e.g., your-site.github.io).
 const firebaseConfig = {
   apiKey: "AIzaSyCb-ud8qAUBzzY889IxVuiCdMB956J6RyU",
   authDomain: "naviya-47243.firebaseapp.com",
